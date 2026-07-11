@@ -1,0 +1,111 @@
+Segments:
+  - ID: 0x0
+    Name: ARM9
+    Type: EXECUTABLE
+  - ID: 0x1
+    Name: 36
+    Type: OVERLAY
+
+Symbols:
+  - Name: GFL_RandomLCAlt
+    Segment: 0x0
+    Address: 0x2005785
+  - Name: EventWork_GetWkPtr
+    Segment: 0x0
+    Address: 0x20192C1
+  - Name: __aeabi_dadd
+    Segment: 0x0
+    Address: 0x208C250
+  - Name: __aeabi_dmul
+    Segment: 0x0
+    Address: 0x208C934
+  - Name: __aeabi_d2f
+    Segment: 0x0
+    Address: 0x208CC98
+  - Name: __aeabi_i2d
+    Segment: 0x0
+    Address: 0x208CD9C
+  - Name: __aeabi_ui2d
+    Segment: 0x0
+    Address: 0x208CDDC
+  - Name: __aeabi_dcmpgt
+    Segment: 0x0
+    Address: 0x208CEB0
+  - Name: __aeabi_dcmple
+    Segment: 0x0
+    Address: 0x208CF48
+  - Name: __aeabi_dcmplt
+    Segment: 0x0
+    Address: 0x208CFEC
+  - Name: __aeabi_dcmpeq
+    Segment: 0x0
+    Address: 0x208D088
+  - Name: __aeabi_cfcmpeq
+    Segment: 0x0
+    Address: 0x208D1FC
+  - Name: __aeabi_cfcmple
+    Segment: 0x0
+    Address: 0x208D2C0
+  - Name: __aeabi_f2d
+    Segment: 0x0
+    Address: 0x208D31C
+  - Name: __aeabi_i2f
+    Segment: 0x0
+    Address: 0x208D3A0
+  - Name: __aeabi_ui2f
+    Segment: 0x0
+    Address: 0x208D3E8
+  - Name: __aeabi_ldivmod
+    Segment: 0x0
+    Address: 0x208D440
+  - Name: __aeabi_uldivmod
+    Segment: 0x0
+    Address: 0x208D5F0
+  - Name: __aeabi_uldivmod_impl
+    Segment: 0x0
+    Address: 0x208D604
+  - Name: __aeabi_lmul
+    Segment: 0x0
+    Address: 0x208D638
+  - Name: __aeabi_llsl
+    Segment: 0x0
+    Address: 0x208D658
+  - Name: __aeabi_idivmod
+    Segment: 0x0
+    Address: 0x208D688
+  - Name: __aeabi_uidiv
+    Segment: 0x0
+    Address: 0x208D894
+  - Name: __aeabi_uidivmod_impl
+    Segment: 0x0
+    Address: 0x208D89C
+  - Name: __aeabi_f2iz
+    Segment: 0x0
+    Address: 0x208DA78
+  - Name: __aeabi_f2uiz
+    Segment: 0x0
+    Address: 0x208DAAC
+  - Name: __aeabi_d2iz
+    Segment: 0x0
+    Address: 0x208DAEC
+  - Name: __aeabi_d2ulz
+    Segment: 0x0
+    Address: 0x208DB38
+  - Name: __aeabi_fmul
+    Segment: 0x0
+    Address: 0x208DD60
+  - Name: __aeabi_fadd
+    Segment: 0x0
+    Address: 0x208DF40
+  - Name: __aeabi_fsub
+    Segment: 0x0
+    Address: 0x208E170
+  - Name: __aeabi_fdiv
+    Segment: 0x0
+    Address: 0x208E3F4
+  - Name: __aeabi_ddiv
+    Segment: 0x0
+    Address: 0x208E7C4
+  - Name: UpdatePhenomenon
+    Segment: 0x1
+    Address: 0x21A20AD

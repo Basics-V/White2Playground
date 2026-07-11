@@ -54,6 +54,7 @@ ifneq ($(debug), none)
 endif
 
 # Semi build targets
+def_flags += PHENOM_RAND_MAN
 
 # Add them
 as_flags += $(addprefix -D, $(def_flags))
