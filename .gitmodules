@@ -1,0 +1,3 @@
+[submodule "include/swan"]
+	path = include/swan
+	url = https://github.com/ds-pokemon-hacking/swan
