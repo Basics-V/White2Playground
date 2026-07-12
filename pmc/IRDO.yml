@@ -13,6 +13,9 @@ Symbols:
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
+  - Name: StartMenuEventTick
+    Segment: 0x0
+    Address: 0x2036319
   - Name: __aeabi_dadd
     Segment: 0x0
     Address: 0x208C250
