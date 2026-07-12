@@ -6,7 +6,11 @@
 > Basic programming knowledge and experience is *required*.**
 
 ## Features
-- Phenomenon spawn rate control
+- [Phenomenon spawn rate control](## "PHENOM_RAND_MAN")
+- [Skip intro movie](## "SKIP_INTRO_MOVIE")
+- [Disable save button in the FieldMenu](## "NO_SAVE")
+- [Skip intro dialogue (with forced default name/gender)](## "SKIP_INTRO_DIALOGUE")
+- [Pokeball toss animation can include NPC origins](## "BALLTOSS_ORIGIN_MAN")
 
 ## Compiling
 Pick your poison:
