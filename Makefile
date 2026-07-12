@@ -39,23 +39,24 @@ ESDBTrim        := tools/ESDBTrimmer.py
 as_flags        := -mthumb -march=armv5t -r -W -x assembler-with-cpp
 c_flags         := -mthumb -march=armv5t -r -w
 mods            ?= # Example usage: make mods="PHENOM_RAND_MAN SKIP_INTRO_MOVIE"
+def_flags       := $(mods)
 
 # Debug mode
 debug ?= none
 ifneq ($(debug), none)
-    mods += DEBUG
+    def_flags += DEBUG
 
 	# Platform-specific
 	ifeq ($(debug), desmume)
-		mods += DESMUME
+		def_flags += DESMUME
 	else ifeq ($(debug), melonds)
-		mods += MELONDS
+		def_flags += MELONDS
 	endif
 endif
 
 # Add the mod flags
-as_flags += $(addprefix -D, $(mods))
-c_flags  += $(addprefix -D, $(mods))
+as_flags += $(addprefix -D, $(def_flags))
+c_flags  += $(addprefix -D, $(def_flags))
 
 vpath %.s   $(src_dir)
 vpath %.c   $(src_dir)

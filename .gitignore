@@ -4,3 +4,6 @@ include/*.yml
 
 # MacOS
 .DS_Store
+
+# Testing
+testing/

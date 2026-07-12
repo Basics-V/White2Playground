@@ -2,7 +2,7 @@ namespace Mi4 {
 #ifdef DEBUG
     void Printf(const char* format, ...);
 #else
-    inline void Printf(...);
+    inline void Printf(...) {}
 #endif
 }
 
