@@ -1,6 +1,6 @@
 # Build files
 build/
-ghidra.yml
+include/*.yml
 
 # MacOS
 .DS_Store

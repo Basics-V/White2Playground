@@ -11,8 +11,8 @@
 ## Compiling
 Pick your poison:
 ```sh
-$ make code debug=melonds
 $ make code debug=desmume
+$ make code debug=melonds mods="PHENOM_RAND_MAN SKIP_INTRO_MOVIE"
 $ make esdb
 $ make
 ```
