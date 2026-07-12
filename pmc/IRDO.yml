@@ -3,9 +3,12 @@ Segments:
     Name: ARM9
     Type: EXECUTABLE
   - ID: 0x1
-    Name: 36
+    Name: 12
     Type: OVERLAY
   - ID: 0x2
+    Name: 36
+    Type: OVERLAY
+  - ID: 0x3
     Name: 162
     Type: OVERLAY
 
@@ -112,21 +115,30 @@ Symbols:
   - Name: __aeabi_ddiv
     Segment: 0x0
     Address: 0x208E7C4
-  - Name: FieldMenu_CountActiveButtons
+  - Name: s020e_PlayPokeballToss
     Segment: 0x1
+    Address: 0x21655D9
+  - Name: GetMModelWPosPtr
+    Segment: 0x1
+    Address: 0x2167335
+  - Name: FindFieldActor
+    Segment: 0x1
+    Address: 0x2167A55
+  - Name: FieldMenu_CountActiveButtons
+    Segment: 0x2
     Address: 0x21A0281
   - Name: FieldMenu_CursorSelect
-    Segment: 0x1
+    Segment: 0x2
     Address: 0x21A07ED
   - Name: UpdatePhenomenon
-    Segment: 0x1
+    Segment: 0x2
     Address: 0x21A20AD
   - Name: FieldMenuButtonArray
-    Segment: 0x1
+    Segment: 0x2
     Address: 0x21D0088
   - Name: NewGame_Main
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A01ED
   - Name: NewGame_CreateTrainerCard
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A04D9
