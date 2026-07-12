@@ -5,6 +5,9 @@ Segments:
   - ID: 0x1
     Name: 36
     Type: OVERLAY
+  - ID: 0x2
+    Name: 162
+    Type: OVERLAY
 
 Symbols:
   - Name: GFL_RandomLCAlt
@@ -121,3 +124,9 @@ Symbols:
   - Name: FieldMenuButtonArray
     Segment: 0x1
     Address: 0x21D0088
+  - Name: NewGame_Main
+    Segment: 0x2
+    Address: 0x21A01ED
+  - Name: NewGame_CreateTrainerCard
+    Segment: 0x2
+    Address: 0x21A04D9
