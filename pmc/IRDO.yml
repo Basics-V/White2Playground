@@ -9,6 +9,9 @@ Segments:
     Name: 36
     Type: OVERLAY
   - ID: 0x3
+    Name: 142
+    Type: OVERLAY
+  - ID: 0x4
     Name: 162
     Type: OVERLAY
 
@@ -16,12 +19,33 @@ Symbols:
   - Name: GFL_RandomLCAlt
     Segment: 0x0
     Address: 0x2005785
+  - Name: GFL_SndSEPlay
+    Segment: 0x0
+    Address: 0x2006255
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
+  - Name: copyVarForText
+    Segment: 0x0
+    Address: 0x20245D5
+  - Name: GFL_WordSetFormatStrbuf
+    Segment: 0x0
+    Address: 0x202494D
+  - Name: PML_ItemGetParam
+    Segment: 0x0
+    Address: 0x202684D
   - Name: StartMenuEventTick
     Segment: 0x0
     Address: 0x2036319
+  - Name: GFL_BGSysClearScr
+    Segment: 0x0
+    Address: 0x2045765
+  - Name: GFL_MsgDataLoadStrbuf
+    Segment: 0x0
+    Address: 0x2048865
+  - Name: vsnprintf
+    Segment: 0x0
+    Address: 0x2085B18
   - Name: __aeabi_dadd
     Segment: 0x0
     Address: 0x208C250
@@ -37,6 +61,9 @@ Symbols:
   - Name: __aeabi_ui2d
     Segment: 0x0
     Address: 0x208CDDC
+  - Name: __aeabi_dcmpge
+    Segment: 0x0
+    Address: 0x208CE18
   - Name: __aeabi_dcmpgt
     Segment: 0x0
     Address: 0x208CEB0
@@ -82,7 +109,7 @@ Symbols:
   - Name: __aeabi_idivmod
     Segment: 0x0
     Address: 0x208D688
-  - Name: __aeabi_uidiv
+  - Name: __aeabi_uidivmod
     Segment: 0x0
     Address: 0x208D894
   - Name: __aeabi_uidivmod_impl
@@ -106,6 +133,9 @@ Symbols:
   - Name: __aeabi_fadd
     Segment: 0x0
     Address: 0x208DF40
+  - Name: __aeabi_frsub
+    Segment: 0x0
+    Address: 0x208E164
   - Name: __aeabi_fsub
     Segment: 0x0
     Address: 0x208E170
@@ -136,9 +166,45 @@ Symbols:
   - Name: FieldMenuButtonArray
     Segment: 0x2
     Address: 0x21D0088
-  - Name: NewGame_Main
+  - Name: Bag_UpdateStateMachine
     Segment: 0x3
+    Address: 0x2199901
+  - Name: Bag_DrawWindow
+    Segment: 0x3
+    Address: 0x219991D
+  - Name: Bag_LoadItemName
+    Segment: 0x3
+    Address: 0x21999F9
+  - Name: Bag_IsItemRepel
+    Segment: 0x3
+    Address: 0x219A0F9
+  - Name: Bag_CanUse
+    Segment: 0x3
+    Address: 0x219A11D
+  - Name: Bag_RepelEffect
+    Segment: 0x3
+    Address: 0x219A145
+  - Name: Bag_WaitDialogue
+    Segment: 0x3
+    Address: 0x219A22D
+  - Name: Bag_SubItem
+    Segment: 0x3
+    Address: 0x219B381
+  - Name: Bag_GetUseButtonType
+    Segment: 0x3
+    Address: 0x219BF45
+  - Name: Bag_SetItemWindowState
+    Segment: 0x3
+    Address: 0x219C911
+  - Name: Bag_CreateTextBox
+    Segment: 0x3
+    Address: 0x219F6E5
+  - Name: Bag_SetMenuBrightness
+    Segment: 0x3
+    Address: 0x219FDE9
+  - Name: NewGame_Main
+    Segment: 0x4
     Address: 0x21A01ED
   - Name: NewGame_CreateTrainerCard
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x21A04D9

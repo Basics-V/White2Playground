@@ -1,13 +1,18 @@
+# No REGEX solution will ever be enough.
+# Run nm on the elf and shove that into the final_matches
+# if you want an accurate response.
+# Sincerely, MCMi460.
 from re import sub, findall, DOTALL
 from argparse import ArgumentParser
 from pathlib import Path
 from yaml import load, SafeLoader
 
-DECLARATION_PATTERN = r"\b[A-Za-z_][A-Za-z0-9_<>:]*\s+([A-Za-z_][A-Za-z0-9_]*)\s*\([^)]*\)\s*[{;]"
+DECLARATION_PATTERN = r"\b[A-Za-z_][A-Za-z0-9_<>:]*\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?:\([^)]*\)\s*[{;]|;)"
 CALL_PATTERN = r"\b(?!(?:if|while|for|switch|return|void|int|char|else|catch)\b)([A-Za-z_][A-Za-z0-9_]*)\s*\("
 STANDALONE_PATTERN = r"\bFULL_COPY_[a-zA-Z0-9_]*"
 
-blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "vsnprintf"]
+# (Not a catch-all blacklist... needs manual correction *often*)
+blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args"]
 final_matches = []
 
 def sanitize(item):
@@ -29,14 +34,17 @@ def sanitize(item):
     if not item in blacklist and not item in final_matches:
         final_matches.append(item)
 
-def strip_comments(text):
-    text = sub(r"//.*", "", text)
-    text = sub(r"/\*.*?\*/", "", text, flags = DOTALL)
-    return text
-
 def parse_cpp(file_path):
     with open(file_path, "r") as file:
-        code = strip_comments(file.read())
+        code = sub(
+            r"'.*?'", "''", sub(
+                r'".*?"', '""', sub(
+                    r"/\*.*?\*/", "", sub(
+                        r"//.*", "",
+                        file.read()),
+                    flags = DOTALL)
+                )
+            )
 
     declarations = findall(DECLARATION_PATTERN, code)
     calls = findall(CALL_PATTERN, code)
@@ -142,8 +150,14 @@ def parse_esdbs(esdb_paths, curate = True):
     out = {"Segments":[], "Symbols":[]}
     for symbol in esdb["Symbols"]:
         if symbol["Name"] in final_matches or symbol["Name"].startswith("__aeabi"):
-            out["Symbols"].append(symbol)
-            segments.append(symbol["Segment"])
+            found = False
+            for out_sym in out["Symbols"]:
+                if out_sym["Name"] == symbol["Name"]:
+                    found = True
+                    break
+            if not found:
+                out["Symbols"].append(symbol)
+                segments.append(symbol["Segment"])
 
     segments = set(segments)
     for segment in esdb["Segments"]:

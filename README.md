@@ -11,6 +11,7 @@
 - [Disable save button in the FieldMenu](## "NO_SAVE")
 - [Skip intro dialogue (with forced default name/gender)](## "SKIP_INTRO_DIALOGUE")
 - [Pokeball toss animation can include NPC origins](## "BALLTOSS_ORIGIN_MAN")
+- [Add "Use" button and attach code to any item](## "CUSTOM_ITEM_USE")
 
 ## Compiling
 Pick your poison:
@@ -27,3 +28,4 @@ Open CTRMap, install PMC, and use the final `.yml` and `.dll` from this project.
 ## Special Thanks
 - [HelloOO7](https://github.com/HelloOO7)
 - [PlatinumMaster](https://github.com/PlatinumMaster)
+- [Dararo](https://github.com/Paideieitor)

@@ -14,12 +14,13 @@ idb_esdb := $(addprefix $(build_dir)/idb/, $(notdir $(ext_idb:.idb=.yml)))
 # -------------------------------------------------------------------
 # ESDBs
 ## Trims and outputs the final ESDB
+# (I'd really prefer an nm solution, but complicated ifdefs make that tricky)
 $(pmc_dir)/%.yml: $(incl_dir)/swan/%.yml $(srcs) $(venv) $(ext_esdb) $(idb_esdb)
 	@ echo "[-] Trimming the final ESDB..."
 	@ source "$(venv)/bin/activate"; \
 	  $(python) $(ESDBTrim) -i $< $(addprefix -i , $(ext_esdb)) $(addprefix -i , $(idb_esdb)) -o $@ $(addprefix -s , $(srcs))
 
-# Build the extra ESDBs from the supplied IDBs
+## Build the extra ESDBs from the supplied IDBs
 .PRECIOUS: $(build_dir)/idb/%.yml
 $(build_dir)/idb/%.yml: $(incl_dir)/%.idb $(venv)
 	@ echo "[$$] Extracting symbols from $<..."
@@ -27,7 +28,7 @@ $(build_dir)/idb/%.yml: $(incl_dir)/%.idb $(venv)
 	@ source "$(venv)/bin/activate"; \
 	  ($(python) $(IDBTool) $< --segs; $(python) $(IDBTool) $< -n) | $(python) $(IDBCurate) > $@
 
-# Creates the venv if necessary
+## Creates the venv if necessary
 $(venv):
 	@ echo "[#] Creating Python virtual environment..."
 	@ $(python) -m venv $(venv)
