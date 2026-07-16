@@ -1,6 +1,10 @@
 # Build files
 build/
+
+# Development files
 include/*.yml
+include/*.idb
+venv/
 
 # MacOS
 .DS_Store

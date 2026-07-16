@@ -34,6 +34,8 @@ python          := python3
 CTRMap          := tools/CTRMap.jar
 CTRMapV         := tools/CTRMapV.jar
 ESDBTrim        := tools/ESDBTrimmer.py
+IDBTool         := tools/pyidbutil/idbtool.py
+IDBCurate       := tools/IDBCurator.py
 
 # Flags
 as_flags        := -mthumb -march=armv5t -r -W -x assembler-with-cpp

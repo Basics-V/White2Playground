@@ -57,11 +57,86 @@ def parse_asm(file_path):
     for ref in set(refs):
         sanitize(ref)
 
-def curate_yml(esdb_paths):
-    esdb = {}
+def parse_esdbs(esdb_paths, curate = True):
+    esdb = {"Segments":[],"Symbols":[]}
     for path in esdb_paths:
         with open(path, "r") as file:
-            esdb |= load(file, Loader = SafeLoader)
+            temp = load(file, Loader = SafeLoader)
+            final = {"Segments":[],"Symbols":[]}
+            extant_segs = 0
+            seg_id_kv = {}
+            # Sanitize segments
+            for segment in temp["Segments"]:
+                if segment["Type"] not in ("EXECUTABLE", "OVERLAY"):
+                    continue
+                seg_name = segment["Name"]
+                try: seg_name = int(seg_name.lstrip("OVL_"))
+                except: pass
+                if segment["Type"] == "OVERLAY" and not isinstance(seg_name, int):
+                    continue # _BSS?
+                exists = False
+                for segs in esdb["Segments"]:
+                    if segs["Name"] == seg_name:
+                        final["Segments"].append(
+                            {
+                                "Name": seg_name,
+                                "Type": segment["Type"],
+                                "ID": segs["ID"],
+                            }
+                        )
+                        extant_segs += 1
+                        exists = True
+                        break
+                if not exists:
+                    final["Segments"].append(
+                        {
+                            "Name": seg_name,
+                            "Type": segment["Type"],
+                            "ID": len(final["Segments"]) + len(esdb["Segments"]) - extant_segs,
+                        }
+                    )
+                seg_id_kv[segment["ID"]] = final["Segments"][-1]["ID"]
+            
+            # Sanitize symbols
+            for symbol in temp["Symbols"]:
+                # Symbol does not match with a useful segment
+                new_seg = seg_id_kv.get(symbol["Segment"], None)
+                if new_seg is None:
+                    continue
+                # Useless symbols
+                if symbol["Name"][:4] in ("FUN_", "DAT_", "LAB_", "off_", "loc_", "sub_", "PTR_"):
+                    continue
+                if not isinstance(symbol["Address"], int):
+                    raise ValueError("symbol %s has a non-int address" % symbol["Name"])
+                exists = False
+                for syms in esdb["Symbols"]:
+                    if syms["Address"] == symbol["Address"]:
+                        if syms["Segment"] == new_seg:
+                            exists = True
+                            break
+                if not exists:
+                    final["Symbols"].append(
+                        {
+                            "Name": symbol["Name"],
+                            "Segment": new_seg,
+                            "Address": symbol["Address"],
+                        }
+                    )
+
+            # Add all of the above to our final ESDB
+            #esdb["Segments"] += final["Segments"]
+            for fin_seg in final["Segments"]:
+                found = False
+                for seg in esdb["Segments"]:
+                    if fin_seg["ID"] == seg["ID"]:
+                        found = True
+                        break
+                if not found:
+                    esdb["Segments"].append(fin_seg)
+            esdb["Symbols"] += final["Symbols"]
+
+    if not curate:
+        return esdb
 
     segments = []
     out = {"Segments":[], "Symbols":[]}
@@ -98,7 +173,7 @@ def output_yml(file_path, esdb):
         file.write("\nSymbols:\n")
         for symbol in esdb["Symbols"]:
             file.write("  - Name: %s\n" % symbol["Name"])
-            file.write("    Segment: 0x%X\n" % symbol["updated_segment"])
+            file.write("    Segment: 0x%X\n" % symbol.get("updated_segment", symbol["Segment"]))
             file.write("    Address: 0x%X\n" % symbol["Address"])
 
 if __name__ == "__main__":
@@ -138,7 +213,7 @@ if __name__ == "__main__":
                 raise ValueError("unknown file type of file: %s" % src.resolve())
 
     # Read the ESDBs
-    final_esdb = curate_yml([ Path(esdb) for esdb in args.input ])
+    final_esdb = parse_esdbs([ Path(esdb) for esdb in args.input ])
 
     # Write the ESDB
     output_yml(args.output, final_esdb)
