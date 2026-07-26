@@ -22,6 +22,33 @@ Symbols:
   - Name: GFL_SndSEPlay
     Segment: 0x0
     Address: 0x2006255
+  - Name: isBadgeObtained
+    Segment: 0x0
+    Address: 0x200C97D
+  - Name: GameEvent_Create
+    Segment: 0x0
+    Address: 0x2016CB5
+  - Name: GameEvent_RunCallback
+    Segment: 0x0
+    Address: 0x2016CF9
+  - Name: GameEvent_GetData
+    Segment: 0x0
+    Address: 0x2016EDD
+  - Name: GameData_GetPlayerState
+    Segment: 0x0
+    Address: 0x20171F5
+  - Name: GameData_GetSeason
+    Segment: 0x0
+    Address: 0x20173AD
+  - Name: GameData_GetFieldSoundSystem
+    Segment: 0x0
+    Address: 0x201749D
+  - Name: GameData_GetEncountState
+    Segment: 0x0
+    Address: 0x20174A5
+  - Name: getTrainerCardDataBlkAddress
+    Segment: 0x0
+    Address: 0x2017975
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
@@ -34,15 +61,69 @@ Symbols:
   - Name: PML_ItemGetParam
     Segment: 0x0
     Address: 0x202684D
+  - Name: FieldSnd_ResumeAmbience
+    Segment: 0x0
+    Address: 0x202EE8D
+  - Name: EventBGMChange_Create
+    Segment: 0x0
+    Address: 0x202FB51
+  - Name: GetMapBGMIDByPlayerState
+    Segment: 0x0
+    Address: 0x2030191
   - Name: StartMenuEventTick
     Segment: 0x0
     Address: 0x2036319
+  - Name: GFL_HeapAllocate
+    Segment: 0x0
+    Address: 0x203A229
+  - Name: GFL_HeapFree
+    Segment: 0x0
+    Address: 0x203A279
   - Name: GFL_BGSysClearScr
     Segment: 0x0
     Address: 0x2045765
+  - Name: GFL_StrBufCreate
+    Segment: 0x0
+    Address: 0x204855D
+  - Name: GFL_StrBufFree
+    Segment: 0x0
+    Address: 0x2048591
+  - Name: GFL_MsgSysLoadData
+    Segment: 0x0
+    Address: 0x2048789
+  - Name: GFL_MsgDataFree
+    Segment: 0x0
+    Address: 0x2048801
   - Name: GFL_MsgDataLoadStrbuf
     Segment: 0x0
     Address: 0x2048865
+  - Name: GFL_ArcSysReadHeapNewLZ
+    Segment: 0x0
+    Address: 0x204B511
+  - Name: finit
+    Segment: 0x0
+    Address: 0x2070CA9
+  - Name: romfs_fclose
+    Segment: 0x0
+    Address: 0x2070DE1
+  - Name: romfs_fgetsize
+    Segment: 0x0
+    Address: 0x2070DED
+  - Name: romfs_fseek
+    Segment: 0x0
+    Address: 0x2070E55
+  - Name: romfs_fread
+    Segment: 0x0
+    Address: 0x2070E6D
+  - Name: romfs_fopen
+    Segment: 0x0
+    Address: 0x2070ECD
+  - Name: GetFileSize
+    Segment: 0x0
+    Address: 0x2070ED9
+  - Name: sys_memset
+    Segment: 0x0
+    Address: 0x20787D4
   - Name: vsnprintf
     Segment: 0x0
     Address: 0x2085B18
@@ -145,6 +226,30 @@ Symbols:
   - Name: __aeabi_ddiv
     Segment: 0x0
     Address: 0x208E7C4
+  - Name: EventScriptCall_Start
+    Segment: 0x1
+    Address: 0x21536C5
+  - Name: FieldScript_CreateVM
+    Segment: 0x1
+    Address: 0x2153B65
+  - Name: FieldScript_ResolveSCRID
+    Segment: 0x1
+    Address: 0x2153C59
+  - Name: ScriptGlobalTable
+    Segment: 0x1
+    Address: 0x2153CF8
+  - Name: FieldScript_LoadData
+    Segment: 0x1
+    Address: 0x2153D09
+  - Name: FieldScript_CheckSCRID
+    Segment: 0x1
+    Address: 0x2153D21
+  - Name: EventFieldBag_HandleReturnAction
+    Segment: 0x1
+    Address: 0x215BE11
+  - Name: CallFieldCommonEventFunc
+    Segment: 0x1
+    Address: 0x215F025
   - Name: s020e_PlayPokeballToss
     Segment: 0x1
     Address: 0x21655D9
@@ -154,15 +259,60 @@ Symbols:
   - Name: FindFieldActor
     Segment: 0x1
     Address: 0x2167A55
+  - Name: FIELD_PROC_LINK_LIST
+    Segment: 0x1
+    Address: 0x216CBD8
+  - Name: FIELD_COMMON_EVENTS
+    Segment: 0x1
+    Address: 0x216CE24
+  - Name: Field_GetPlayerStateZoneID
+    Segment: 0x2
+    Address: 0x2180519
+  - Name: Field_GetPlayer
+    Segment: 0x2
+    Address: 0x2180531
+  - Name: Field_GetEncountSystem
+    Segment: 0x2
+    Address: 0x2180565
+  - Name: Field_GetResolvedControllerTypeID
+    Segment: 0x2
+    Address: 0x2180579
+  - Name: Field_Get3DCi
+    Segment: 0x2
+    Address: 0x21812E1
+  - Name: FieldMsg_NewMsgWin
+    Segment: 0x2
+    Address: 0x2188A95
   - Name: FieldMenu_CountActiveButtons
     Segment: 0x2
     Address: 0x21A0281
   - Name: FieldMenu_CursorSelect
     Segment: 0x2
     Address: 0x21A07ED
+  - Name: EncSys_IsActive
+    Segment: 0x2
+    Address: 0x21A16E9
   - Name: UpdatePhenomenon
     Segment: 0x2
     Address: 0x21A20AD
+  - Name: EncountSystem_CancelPhenomenon
+    Segment: 0x2
+    Address: 0x21A21B5
+  - Name: CreateRandomPhenomenonEvent
+    Segment: 0x2
+    Address: 0x21A2211
+  - Name: positionShakingSpot
+    Segment: 0x2
+    Address: 0x21A25C5
+  - Name: SpawnPhenomenon
+    Segment: 0x2
+    Address: 0x21A272D
+  - Name: EncountSystem_CancelPhenomenonCore
+    Segment: 0x2
+    Address: 0x21A28AD
+  - Name: EventFieldEffect_Create
+    Segment: 0x2
+    Address: 0x21BB871
   - Name: FieldMenuButtonArray
     Segment: 0x2
     Address: 0x21D0088

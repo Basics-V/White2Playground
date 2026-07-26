@@ -5,6 +5,10 @@ build/
 include/*.yml
 include/*.idb
 venv/
+export_romfs.sh
+
+# Tools
+tools/*.jar
 
 # MacOS
 .DS_Store

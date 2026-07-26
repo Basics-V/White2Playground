@@ -1,3 +1,4 @@
+#pragma once
 #include "swantypes.h"
 
 struct StrBuf { // Paideieitor/PW2Code/Headers/defs.h

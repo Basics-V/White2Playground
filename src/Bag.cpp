@@ -3,53 +3,26 @@
     and research on the Bag!
 */
 
-#include "swantypes.h"
-#include "system/game_data.h"
 #include "Util.h"
-#include "gfl/str/string.h"
-
-struct Bag { // See Paideieitor/PW2Code/Headers/bag.h
-    GameData* gameData;
-
-    u8 unk1[4];
-    void* trainerCardWork;
-
-    u8 unk2[0x514];
-
-    void* msgData;
-    void* wordSetSystem;
-    StrBuf* strBuf1;
-    StrBuf* strBuf2;
-
-    u8 unk3[0x370];
-    
-    u32 itemID;
-    // ...
-};
-
-typedef void (Bag_StateFunc)(Bag*);
+#include "Bag.h"
 
 #ifdef CUSTOM_ITEM_USE
-#include "save/savedata_bag.h"
-#include "nds/gx.h"
-#include "gfl/g2d/gfl_bg_sys.h"
+#include "CUSTOM_ITEM_USE.h"
+#endif
+
+#ifdef CUSTOM_ITEM_USE
+#ifdef PHENOM_POKERADAR
+#include "PHENOM_POKERADAR.h"
+#include "data/heapid_def.h"
+#include "system/game_event.h"
+#include "nds/mem.h"
+#include "field/field_encount.h"
+#include "field/field_encount_data.h"
+#include "field/field_effect_encount_state.h"
+#include "field/field_3dci.h"
+#endif
 
 extern "C" {
-    b32 Bag_IsItemRepel(int);
-    Bag_StateFunc Bag_WaitDialogue;
-    void Bag_UpdateStateMachine(Bag*, Bag_StateFunc);
-    void Bag_SetItemWindowState(Bag*);
-    int PML_ItemGetParam(void*, u32);
-    void GFL_MsgDataLoadStrbuf(void*, int, StrBuf*);
-    void Bag_LoadItemName(Bag*, int, u32);
-    void copyVarForText(void*, int, void*);
-    void GFL_WordSetFormatStrbuf(void*, StrBuf*, StrBuf*);
-    void Bag_CreateTextBox(Bag*, int);
-    void Bag_DrawWindow(Bag*);
-    void Bag_SetMenuBrightness(Bag*, b32);
-    void GFL_SndSEPlay(u32);
-    void Bag_SubItem(Bag*, u16);
-
     // General use message for using an item
     void FinishUse_Message(Bag* bag) { // References Bag_RepelEffect
         // Display messagebox
@@ -73,15 +46,102 @@ extern "C" {
         Bag_SetMenuBrightness(bag, true);
         Bag_SetItemWindowState(bag);
     }
+
+    // Execute an action
+    void FinishUse_ExecAction(Bag* bag, BagActionID action) {
+        bag->nextActionID = action;
+        Bag_UpdateStateMachine(bag, NULL);
+    }
 }
 
-typedef Bag_StateFunc CustomItemUseFunc;
-struct CustomItemUseDef {
-    u32 ID;
-    CustomItemUseFunc* func;
-};
-
 extern "C" {
+    #ifdef PHENOM_POKERADAR
+    b32 EncSys_IsActive(EncountSystem*, u32);
+    void* getTrainerCardDataBlkAddress(GameData*);
+    bool isBadgeObtained(void*, u32);
+    u32 Field_GetResolvedControllerTypeID(Field*);
+    void positionShakingSpot(EncountSystem*, EffectEncountState*, u8);
+    void SpawnPhenomenon(EncountSystem*, EffectEncountState*);
+    void EncountSystem_CancelPhenomenon(EncountSystem*);
+    void EncountSystem_CancelPhenomenonCore(EncountSystem*, void*);
+    EncountSystem* Field_GetEncountSystem(Field*);
+    EncountState* GameData_GetEncountState(GameData*);
+    Fld3DCi* Field_Get3DCi(Field*);
+    GameEvent* EventFieldEffect_Create(GameSystem*, Fld3DCi*, u32);
+
+    void PokeRadarUse(Bag* bag) {
+        Mi4::Printf("Poké Radar has been used!\n");
+
+        // Close the bag to prepare for our FieldAction
+        FinishUse_ExecAction(bag, BAG_CUSTOM);
+    }
+
+    GameEventReturnCode PhenomRadarCallback(GameEvent* event, u32* state, void* evDat) {
+        PhenomRadarEvent* eventData = (PhenomRadarEvent*)evDat;
+
+        // Fetch necessary works...
+        EncountSystem* encSys = Field_GetEncountSystem(eventData->field);
+        EncountState* encState = GameData_GetEncountState(encSys->m_GameData);
+        EncData* encData = encSys->m_EncData;
+        EffectEncountState* effEncState = (EffectEncountState*)encSys->m_EffectEncountState;
+
+        /* Heavily references UpdatePhenomenon/OVL_36:0x21A20AD */
+        switch (*state) {
+            case 0: {
+                if (
+                    EncSys_IsActive(encSys, 2) &&
+                    isBadgeObtained(getTrainerCardDataBlkAddress(encSys->m_GameData), 0) &&
+                    Field_GetResolvedControllerTypeID(encSys->m_Field) == 0
+                ) {
+                    eventData->flags = encData->UserData[2] != 0;
+                    if (encData->UserData[4] || encData->UserData[6])
+                        eventData->flags |= 2;
+                    if (eventData->flags != 0) {
+                        // If a phenomenon already exists
+                        if ((encState->field_24 & 0xF00) != 0) {
+                            EncountSystem_CancelPhenomenonCore(encSys, encSys->m_EffectEncountState);
+                        }
+
+                        // Spawn the phenomenon
+                        positionShakingSpot(encSys, effEncState, eventData->flags);
+                        if (effEncState->maxMapEffects != 0) {
+                            /*
+                            Fld3DCi* fld3dci = Field_Get3DCi(eventData->field);
+                            GameEvent* fieldEffectEvent = EventFieldEffect_Create(GameEvent_GetGameSystem(event), fld3dci, 76);
+                            GameEvent_ChainNext(event, fieldEffectEvent);
+                            */
+                            (*state)++;
+                            break;
+                        }
+                    }
+                }
+                // Failed to use the item!
+                EventScriptCall_Start(event, PHPKRDR_SCR_useFailed, NULL, NULL, HEAPID_FIELDMAP);
+                *state = 3;
+                break;
+            }
+            case 1:
+                // Succeeded to use the item!
+                EventScriptCall_Start(event, PHPKRDR_SCR_useSuccess, NULL, NULL, HEAPID_FIELDMAP);
+                (*state)++;
+                break;
+            case 2:
+                while ((encState->field_24 & 0xF00) == 0) SpawnPhenomenon(encSys, effEncState);
+            case 3:
+                return GAMEEVENT_DONE;
+        }
+        return GAMEEVENT_CONTINUE;
+    }
+
+    GameEvent* PokeRadarActivate(Field* field, GameSystem* gameSys) {
+        // Setup Phenomenon Poké Radar Event
+        GameEvent* event = GameEvent_Create(gameSys, NULL, PhenomRadarCallback, sizeof(PhenomRadarEvent));
+        PhenomRadarEvent* eventData = (PhenomRadarEvent*)GameEvent_GetData(event);
+        sys_memset(eventData, 0, sizeof(PhenomRadarEvent));
+        eventData->field = field;
+        return event;
+    }
+    #endif
     void BlackFluteUse(Bag* bag) {
         Mi4::Printf("Black Flute has been used!\n");
 
@@ -102,19 +162,27 @@ extern "C" {
     }
 }
 
-// Define our custom functionality
 CustomItemUseDef customItemUseDefs[] = {
+    #ifdef PHENOM_POKERADAR
+    {
+        431, // Poké Radar
+        &PokeRadarUse,
+        &PokeRadarActivate,
+    },
+    #endif
     /*
     {
         68, // Black Flute
         &BlackFluteUse,
+        NULL,
     },
     {
         89, // Big Pearl
         &BigPearlUse,
+        NULL,
     },
     */
-    { 0, NULL, }, // Sentinel
+    { 0, NULL, NULL, }, // Sentinel - don't remove!
 };
 
 extern "C" {
@@ -122,7 +190,7 @@ extern "C" {
     u8 THUMB_BRANCH_Bag_CanUse(int itemID) {
         // Vanilla
         if (Bag_IsItemRepel(itemID)) return 1;
-        if ((itemID + 0xFD98) & 0xFFFF < 2) return 2;
+        if (itemID == 616 || itemID == 617) return 2; // 616 & 617, Light/Dark Stones
 
         // Check for custom item use
         for (CustomItemUseDef* def = customItemUseDefs; def->func != NULL; def++)

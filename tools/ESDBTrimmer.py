@@ -9,10 +9,11 @@ from yaml import load, SafeLoader
 
 DECLARATION_PATTERN = r"\b[A-Za-z_][A-Za-z0-9_<>:]*\s+([A-Za-z_][A-Za-z0-9_]*)\s*(?:\([^)]*\)\s*[{;]|;)"
 CALL_PATTERN = r"\b(?!(?:if|while|for|switch|return|void|int|char|else|catch)\b)([A-Za-z_][A-Za-z0-9_]*)\s*\("
-STANDALONE_PATTERN = r"\bFULL_COPY_[a-zA-Z0-9_]*"
+FULL_COPY_PATTERN = r"\bFULL_COPY_[a-zA-Z0-9_]*"
+EXTERN_PATTERN = r"\bextern\b[^{}]*?\b([A-Za-z0-9_]+)\s*(?:\[[^\]]*\])*\s*;"
 
 # (Not a catch-all blacklist... needs manual correction *often*)
-blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args"]
+blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags"]
 final_matches = []
 
 def sanitize(item):
@@ -48,8 +49,9 @@ def parse_cpp(file_path):
 
     declarations = findall(DECLARATION_PATTERN, code)
     calls = findall(CALL_PATTERN, code)
-    stand_alones = findall(STANDALONE_PATTERN, code)
-    for item in set(declarations + calls + stand_alones):
+    fullcopys = findall(FULL_COPY_PATTERN, code)
+    externs = findall(EXTERN_PATTERN, code)
+    for item in set(declarations + calls + fullcopys + externs):
         sanitize(item)
 
 def parse_asm(file_path):
@@ -122,6 +124,10 @@ def parse_esdbs(esdb_paths, curate = True):
                         if syms["Segment"] == new_seg:
                             exists = True
                             break
+                    if syms["Name"] == symbol["Name"]:
+                        continue
+                        print(syms, symbol)
+                        raise Exception("This is likely an error symbol")
                 if not exists:
                     final["Symbols"].append(
                         {
@@ -219,7 +225,7 @@ if __name__ == "__main__":
     # Read the source files
     for src in [ Path(src) for src in args.source ]:
         match src.suffix:
-            case ".cpp" | ".c":
+            case ".cpp" | ".c" | ".h":
                 parse_cpp(src.resolve())
             case ".s":
                 parse_asm(src.resolve())

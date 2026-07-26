@@ -22,3 +22,21 @@ FULL_COPY_UpdatePhenomenon_0xd4:
     CMP R1,R0
     .size FULL_COPY_UpdatePhenomenon_0xd4, . - FULL_COPY_UpdatePhenomenon_0xd4
 #endif
+
+#ifdef PHENOM_NO_ENCOUNT
+@ Overwrite encounter branch instructions
+FULL_COPY_CreateRandomPhenomenonEvent_0x7c:
+    NOP
+    .size FULL_COPY_CreateRandomPhenomenonEvent_0x7c, . - FULL_COPY_CreateRandomPhenomenonEvent_0x7c
+FULL_COPY_CreateRandomPhenomenonEvent_0xa6:
+    NOP
+    .size FULL_COPY_CreateRandomPhenomenonEvent_0xa6, . - FULL_COPY_CreateRandomPhenomenonEvent_0xa6
+#elif defined PHENOM_ONLY_ENCOUNT
+@ Overwrite encounter branch instructions
+FULL_COPY_CreateRandomPhenomenonEvent_0x7a:
+    NOP
+    .size FULL_COPY_CreateRandomPhenomenonEvent_0x7a, . - FULL_COPY_CreateRandomPhenomenonEvent_0x7a
+FULL_COPY_CreateRandomPhenomenonEvent_0xa4:
+    NOP
+    .size FULL_COPY_CreateRandomPhenomenonEvent_0xa4, . - FULL_COPY_CreateRandomPhenomenonEvent_0xa4
+#endif

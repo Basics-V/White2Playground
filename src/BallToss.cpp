@@ -36,8 +36,8 @@
 #include "math/vector.h"
 #include "system/gamesystem.h"
 #include "field/field_player.h"
+#include "field/field_eventwork.h"
 extern "C" {
-    u16* EventWork_GetWkPtr(EventWorkSave*, int);
     FieldActor* FindFieldActor(FieldActorSystem*, u16);
     VecFx32* GetMModelWPosPtr(FieldActor*);
 

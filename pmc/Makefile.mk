@@ -18,7 +18,7 @@ idb_esdb := $(addprefix $(build_dir)/idb/, $(notdir $(ext_idb:.idb=.yml)))
 $(pmc_dir)/%.yml: $(incl_dir)/swan/%.yml $(srcs) $(venv) $(ext_esdb) $(idb_esdb)
 	@ echo "[-] Trimming the final ESDB..."
 	@ source "$(venv)/bin/activate"; \
-	  $(python) $(ESDBTrim) -i $< $(addprefix -i , $(ext_esdb)) $(addprefix -i , $(idb_esdb)) -o $@ $(addprefix -s , $(srcs))
+	  $(python) $(ESDBTrim) -i $< $(addprefix -i , $(ext_esdb)) $(addprefix -i , $(idb_esdb)) -o $@ $(addprefix -s , $(srcs) $(headers))
 
 ## Build the extra ESDBs from the supplied IDBs
 .PRECIOUS: $(build_dir)/idb/%.yml

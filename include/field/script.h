@@ -1,0 +1,3 @@
+// Riveting, I know...
+struct ScriptVM;
+struct FieldScriptEnv;

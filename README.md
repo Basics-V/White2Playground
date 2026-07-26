@@ -23,9 +23,10 @@ $ make
 ```
 
 ## How to use
-Open CTRMap, install PMC, and use the final `.yml` and `.dll` from this project.
+Open CTRMap, install PMC, and use the final `.yml` and `.elf` from this project.
 
 ## Special Thanks
 - [HelloOO7](https://github.com/HelloOO7)
 - [PlatinumMaster](https://github.com/PlatinumMaster)
 - [Dararo](https://github.com/Paideieitor)
+- [totally_anonymous](https://github.com/totallyanon)

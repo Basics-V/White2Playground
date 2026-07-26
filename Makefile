@@ -56,9 +56,17 @@ ifneq ($(debug), none)
 	endif
 endif
 
+# Some mods have dependencies
+ifneq ($(filter PHENOM_POKERADAR,$(def_flags)),)
+	def_flags += CUSTOM_ITEM_USE CUSTOM_SCRIPT
+endif
+
 # Add the mod flags
 as_flags += $(addprefix -D, $(def_flags))
 c_flags  += $(addprefix -D, $(def_flags))
+
+# Add our includes
+c_flags  += -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/PW2Code
 
 vpath %.s   $(src_dir)
 vpath %.c   $(src_dir)
@@ -89,15 +97,18 @@ $(build_dir)/code/%_s.o: %.s
 $(build_dir)/code/%_c.o: %.c $(headers)
 	@ echo "[+] Compiling $<..."
 	@ mkdir -p $(@D)
-	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -c $< -o $@
+	@ $(gcc) $(c_flags) -c $< -o $@
 
 $(build_dir)/code/%_cpp.o: %.cpp $(headers)
 	@ echo "[+] Compiling $<..."
 	@ mkdir -p $(@D)
-	@ $(gcc) $(c_flags) -I$(incl_dir) -I$(incl_dir)/swan -c $< -o $@
+	@ $(gcc) $(c_flags) -c $< -o $@
 
 # Include the Makefile for our ESDB's rules
 include $(pmc_dir)/Makefile.mk
+
+# Include the Makefile for our data structures
+include $(data_dir)/Makefile.mk
 
 # Clean the working directory
 clean:
