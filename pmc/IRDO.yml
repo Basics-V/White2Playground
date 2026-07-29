@@ -346,6 +346,9 @@ Symbols:
   - Name: Bag_SetItemWindowState
     Segment: 0x3
     Address: 0x219C911
+  - Name: Bag_IsUsableItemsEnabled
+    Segment: 0x3
+    Address: 0x219D47D
   - Name: Bag_CreateTextBox
     Segment: 0x3
     Address: 0x219F6E5

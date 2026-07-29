@@ -7,3 +7,10 @@ FULL_COPY_Bag_RepelEffect_0xa:
     NOP
     .size FULL_COPY_Bag_RepelEffect_0xa, . - FULL_COPY_Bag_RepelEffect_0xa
 #endif
+
+#ifdef ALLOW_ENTRALINK_ITEMS
+FULL_COPY_Bag_IsUsableItemsEnabled_0x14:
+    MOV R0,#0x0
+    NOP
+    .size FULL_COPY_Bag_IsUsableItemsEnabled_0x14, . - FULL_COPY_Bag_IsUsableItemsEnabled_0x14
+#endif
