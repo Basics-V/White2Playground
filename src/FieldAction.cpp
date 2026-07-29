@@ -16,7 +16,11 @@ struct FieldActionWork {
 };
 
 typedef GameEvent* (*FieldCommonEventFunc)(Field*, GameSystem*);
-#define FieldCommonEventTableMax 12
+#ifndef PW2CODE_INFINITE_REPEL
+#define FieldCommonEventTableMax 6
+#else
+#define FieldCommonEventTableMax 7
+#endif
 struct FieldCommonEventEntry {
     FieldCommonEventFunc func;
     u32 type;
@@ -25,6 +29,10 @@ struct FieldCommonEventEntry {
 extern FieldCommonEventEntry FIELD_COMMON_EVENTS[];
 
 #ifdef CUSTOM_ITEM_USE
+#ifdef PW2CODE_INFINITE_REPEL
+#define FieldCommonEventInfiniteRepel 6
+extern "C" GameEvent* EventFieldToggleRepel_Create(Field*, GameSystem*);
+#endif
 extern "C" {
     u32 EventFieldBag_HandleReturnAction(void*, FieldActionWork*);
     u32 EventFieldBag_HookReturnAction(void* FieldActionSys, FieldActionWork* actionData) {
@@ -57,6 +65,10 @@ extern "C" {
             Mi4::Printf("WARNING: Could not find a CUSTOM_ITEM_USE def that matches eventType!\n");
             return NULL;
         }
+        #ifdef PW2CODE_INFINITE_REPEL
+        if (eventType == FieldCommonEventInfiniteRepel)
+            return EventFieldToggleRepel_Create(field, gameSys);
+        #endif
         return FIELD_COMMON_EVENTS[eventType].func(field, gameSys);
     }
 }

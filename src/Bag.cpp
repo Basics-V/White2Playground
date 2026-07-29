@@ -201,6 +201,10 @@ extern "C" {
         return 0;
     }
 
+    #ifdef PW2CODE_INFINITE_REPEL
+    u32 PW2Code_Bag_RepelEffect(Bag*);
+    #endif
+
     // Execute custom code if the "repel" is our custom item
     b32 THUMB_BRANCH_LINK_Bag_RepelEffect_0xe(int itemID, Bag* bag) {
         itemID &= 0xFFFF; // Replaced code... itemID is a u16
@@ -215,6 +219,10 @@ extern "C" {
                 return false;
             }
         }
+        #ifdef PW2CODE_INFINITE_REPEL
+        PW2Code_Bag_RepelEffect(bag);
+        return false;
+        #endif
         return Bag_IsItemRepel(itemID);
     }
 
