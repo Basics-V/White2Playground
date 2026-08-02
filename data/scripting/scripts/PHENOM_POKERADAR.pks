@@ -5,6 +5,7 @@ import system.Sound;
 import system.EventWorks;
 import event.Effects;
 import event.actors.Player;
+import system.Field;
 import system.Input;
 import system.Runtime;
 
@@ -18,48 +19,81 @@ public class PHENOM_POKERADAR {
 		Runtime.FinishSubEvents();
 	}
 
-	// 20801
+    // 20801
+	public static void spawnFail() {
+        if (EventWorks.Get(16404) == 0) {
+            useCutscene();
+        } else {
+            Sound.BGMFadeOut(60);
+            Sound.SEPlay(1599);
+        }
+        EventWorks.Set(16404, 4);
+
+        Message.System(2, 0);
+        Runtime.Sleep(30);
+		Message.CloseAll();
+        Sound.SEStop();
+
+        Field.PlayMapBGM();
+        systemMessage(4);
+
+		Runtime.FinishSubEvents();
+	}
+
+	// 20802
 	public static void useSuccess() {
         int radarWk = EventWorks.Get(16404);
         if (radarWk == 2) {
             return useFailed();
         } else if (radarWk == 0) {
-            Sound.BGMFadeOut(60);
-
-            Player.SetSpecialSequence(16);
-            UseItemAction(255);
-
-            WordSet.LoadPlayerName(0);
-            systemMessage(1);
-
-            //Effects.Play(76);
-
-            Player.SetSpecialSequence(8);
-
+            useCutscene();
             EventWorks.Set(16404, 1);
         } else if (radarWk == 4) {
             Sound.BGMFadeOut(60);
             EventWorks.Set(16404, 1);
             radarWk = 0;
+            Sound.SEPlay(1599);
         }
 
-        Sound.SEPlay(1599);
+        if (radarWk != 0) {
+            Sound.SEPlay(1599);
+        }
         Message.System(2, 0);
         Runtime.Sleep(30);
 		Message.CloseAll();
         Sound.SEStop();
 
         Sound.SEPlay(2060);
-        Runtime.Sleep(60);
+        Runtime.Sleep(20);
         Sound.SEStop();
 
-        systemMessage(3);
         if (radarWk == 0) {
             Sound.BGMPlay(1068);
         }
+        systemMessage(3);
 
 		Runtime.FinishSubEvents();
 	}
+
+    static void useCutscene() {
+        Sound.BGMFadeOut(60);
+
+        Player.SetSpecialSequence(16);
+        UseItemAction(255);
+
+        WordSet.LoadPlayerName(0);
+        systemMessage(1);
+
+        int radarWk = EventWorks.Get(16404);
+        EventWorks.Set(16404, 5); // For special effect
+        //Sound.SEPlay(1675);
+        Sound.SEPlay(1599);
+        Effects.Play(50);
+        //Sound.SEStop();
+        EventWorks.Set(16404, radarWk); // Reset special effect
+
+        Player.SetSpecialSequence(8);
+    }
 
     static void systemMessage(int msgID) {
         Message.System(msgID, 0);

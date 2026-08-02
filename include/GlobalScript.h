@@ -10,7 +10,7 @@ struct ScriptGlobalTableEntry {
 };
 
 // Script table constant
-extern ScriptGlobalTableEntry ScriptGlobalTable[];
+extern ScriptGlobalTableEntry GLOBAL_SCRIPT_TABLE[];
 
 extern "C" {
     u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);

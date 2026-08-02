@@ -19,7 +19,7 @@ extern "C" {
     // Allow our scripts to be called from the field
     b32 THUMB_BRANCH_FieldScript_CheckSCRID(u16 scriptID) {
         if (scriptID == 2000) return false;
-        if (scriptID < ScriptGlobalTable[0].endID) return true;
+        if (scriptID < GLOBAL_SCRIPT_TABLE[0].endID) return true;
         
         // Check if the script ID is one of ours from the customScriptTable
         for (CustomScriptEntry* scr = customScriptTable; scr->name != NULL; scr++)

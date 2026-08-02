@@ -22,9 +22,24 @@ Symbols:
   - Name: GFL_SndSEPlay
     Segment: 0x0
     Address: 0x2006255
+  - Name: BagSave_GetPocketPtrByItem
+    Segment: 0x0
+    Address: 0x2008175
+  - Name: BagSave_GetExistingItemPocket
+    Segment: 0x0
+    Address: 0x20083C9
+  - Name: PML_ItemGetType
+    Segment: 0x0
+    Address: 0x20088F1
+  - Name: BagSave_GetActualItemPocket
+    Segment: 0x0
+    Address: 0x20088FD
   - Name: isBadgeObtained
     Segment: 0x0
     Address: 0x200C97D
+  - Name: PassPower_ApplyLuckyShiny
+    Segment: 0x0
+    Address: 0x20138F9
   - Name: GameEvent_Create
     Segment: 0x0
     Address: 0x2016CB5
@@ -58,9 +73,15 @@ Symbols:
   - Name: GFL_WordSetFormatStrbuf
     Segment: 0x0
     Address: 0x202494D
+  - Name: ListMenuCore_AppendMsgOption
+    Segment: 0x0
+    Address: 0x2024FE9
   - Name: PML_ItemGetParam
     Segment: 0x0
     Address: 0x202684D
+  - Name: PlayerActionPerms_IsActionBlocked
+    Segment: 0x0
+    Address: 0x202EA09
   - Name: FieldSnd_ResumeAmbience
     Segment: 0x0
     Address: 0x202EE8D
@@ -70,6 +91,9 @@ Symbols:
   - Name: GetMapBGMIDByPlayerState
     Segment: 0x0
     Address: 0x2030191
+  - Name: GetRegistrableID
+    Segment: 0x0
+    Address: 0x2034AD1
   - Name: StartMenuEventTick
     Segment: 0x0
     Address: 0x2036319
@@ -97,6 +121,9 @@ Symbols:
   - Name: GFL_MsgDataLoadStrbuf
     Segment: 0x0
     Address: 0x2048865
+  - Name: GFL_ArcSysRead
+    Segment: 0x0
+    Address: 0x204A955
   - Name: GFL_ArcSysReadHeapNewLZ
     Segment: 0x0
     Address: 0x204B511
@@ -235,15 +262,24 @@ Symbols:
   - Name: FieldScript_ResolveSCRID
     Segment: 0x1
     Address: 0x2153C59
-  - Name: ScriptGlobalTable
-    Segment: 0x1
-    Address: 0x2153CF8
   - Name: FieldScript_LoadData
     Segment: 0x1
     Address: 0x2153D09
   - Name: FieldScript_CheckSCRID
     Segment: 0x1
     Address: 0x2153D21
+  - Name: EventShortcutChoicePopup_Callback
+    Segment: 0x1
+    Address: 0x215AC05
+  - Name: EventShortcutCallDirect_Callback
+    Segment: 0x1
+    Address: 0x215AE75
+  - Name: ShortcutMenu_SetKeyItemID
+    Segment: 0x1
+    Address: 0x215B051
+  - Name: ShortcutMenu_GetActionFromKeyItem
+    Segment: 0x1
+    Address: 0x215B22D
   - Name: EventFieldBag_HandleReturnAction
     Segment: 0x1
     Address: 0x215BE11
@@ -259,6 +295,9 @@ Symbols:
   - Name: FindFieldActor
     Segment: 0x1
     Address: 0x2167A55
+  - Name: GLOBAL_SCRIPT_TABLE
+    Segment: 0x1
+    Address: 0x216AFD8
   - Name: FIELD_PROC_LINK_LIST
     Segment: 0x1
     Address: 0x216CBD8
@@ -268,9 +307,6 @@ Symbols:
   - Name: Field_GetPlayerStateZoneID
     Segment: 0x2
     Address: 0x2180519
-  - Name: Field_GetPlayer
-    Segment: 0x2
-    Address: 0x2180531
   - Name: Field_GetEncountSystem
     Segment: 0x2
     Address: 0x2180565
@@ -280,18 +316,24 @@ Symbols:
   - Name: Field_Get3DCi
     Segment: 0x2
     Address: 0x21812E1
-  - Name: FieldMsg_NewMsgWin
-    Segment: 0x2
-    Address: 0x2188A95
   - Name: FieldMenu_CountActiveButtons
     Segment: 0x2
     Address: 0x21A0281
   - Name: FieldMenu_CursorSelect
     Segment: 0x2
     Address: 0x21A07ED
+  - Name: FieldEncount_CreateWildPkm
+    Segment: 0x2
+    Address: 0x21A0E01
   - Name: EncSys_IsActive
     Segment: 0x2
     Address: 0x21A16E9
+  - Name: EventWildBattleCall_CreateRandom
+    Segment: 0x2
+    Address: 0x21A1791
+  - Name: EncountState_SyncToPlayer
+    Segment: 0x2
+    Address: 0x21A1F19
   - Name: UpdatePhenomenon
     Segment: 0x2
     Address: 0x21A20AD
@@ -313,6 +355,12 @@ Symbols:
   - Name: EventFieldEffect_Create
     Segment: 0x2
     Address: 0x21BB871
+  - Name: Fld3DCi_LoadG3DSceneTemplate
+    Segment: 0x2
+    Address: 0x21BC175
+  - Name: ShortcutView_FillList
+    Segment: 0x2
+    Address: 0x21BF771
   - Name: FieldMenuButtonArray
     Segment: 0x2
     Address: 0x21D0088
@@ -340,15 +388,24 @@ Symbols:
   - Name: Bag_SubItem
     Segment: 0x3
     Address: 0x219B381
+  - Name: Bag_RegisterKeyItem
+    Segment: 0x3
+    Address: 0x219BE59
   - Name: Bag_GetUseButtonType
     Segment: 0x3
     Address: 0x219BF45
+  - Name: Bag_IsItemRegistered
+    Segment: 0x3
+    Address: 0x219C129
   - Name: Bag_SetItemWindowState
     Segment: 0x3
     Address: 0x219C911
   - Name: Bag_IsUsableItemsEnabled
     Segment: 0x3
     Address: 0x219D47D
+  - Name: BagDisp_DrawItemElement
+    Segment: 0x3
+    Address: 0x219E965
   - Name: Bag_CreateTextBox
     Segment: 0x3
     Address: 0x219F6E5

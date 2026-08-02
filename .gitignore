@@ -6,6 +6,8 @@ include/*.yml
 include/*.idb
 venv/
 export_romfs.sh
+bilbbo_*.sh
+mi460_*.sh
 
 # Tools
 tools/*.jar

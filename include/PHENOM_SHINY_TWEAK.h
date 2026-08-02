@@ -1,0 +1,3 @@
+#ifdef PHENOM_SHINY_TWEAK
+#define PHENOM_SHINY_REROLL 3
+#endif

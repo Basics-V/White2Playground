@@ -1,4 +1,5 @@
 Juniper's words echoed...\n[VAR TRNAME(0)]! There's a time and\r\nplace for everything! But not now.
-[VAR TRNAME(0)] used the Poké Radar!
+[VAR TRNAME(0)] used the PokéRadar!
 .[WAIT(20)].[WAIT(20)].
-The Poké Radar is pointing you\ntowards something!
+The PokéRadar is pointing you\ntowards something!
+But nobody came...\nTry using it in a different spot?

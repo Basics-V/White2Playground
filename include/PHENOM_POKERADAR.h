@@ -11,9 +11,12 @@ struct PhenomRadarEvent {
 
 #define PHPKRDR_SCRDAT    1800
 #define PHPKRDR_SCRID_MIN 20800
-#define PHPKRDR_SCRID_MAX 20801
+#define PHPKRDR_SCRID_MAX 20802
 #define PHPKRDR_TXTDAT    800
 
 #define PHPKRDR_SCR_useFailed  20800
-#define PHPKRDR_SCR_useSuccess 20801
+#define PHPKRDR_SCR_spawnFail  20801
+#define PHPKRDR_SCR_useSuccess 20802
+
+#define PHPKRDR_FLDEFF_MAIN 284
 #endif

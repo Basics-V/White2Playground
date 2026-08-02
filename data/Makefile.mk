@@ -10,12 +10,14 @@ W2Playground := $(build_fs)/White2Playground
 # ARC Definitions
 # -------------------------------------------------------------------
 # ARC labels
+TEXT_SYSTEM_ARC        := a/0/0/2
 TEXT_EVENTS_ARC        := a/0/0/3
 
 # -------------------------------------------------------------------
 # Data Directories
 # -------------------------------------------------------------------
 # General ARCs
+TEXT_SYSTEM_ROOT     := $(data_dir)/text/system
 TEXT_EVENTS_ROOT     := $(data_dir)/text/events
 FIELD_SCRIPT_ROOT    := $(data_dir)/scripting/scripts
 GENERAL_ROOT         := $(data_dir)
@@ -24,6 +26,7 @@ GENERAL_ROOT         := $(data_dir)
 # Targets 
 # -------------------------------------------------------------------
 # Generic
+TEXT_SYSTEM_FILES := $(patsubst $(TEXT_SYSTEM_ROOT)/%.txt, $(build_fs)/$(TEXT_SYSTEM_ARC)/%, $(wildcard $(TEXT_SYSTEM_ROOT)/*))
 TEXT_EVENTS_FILES := $(patsubst $(TEXT_EVENTS_ROOT)/%.txt, $(build_fs)/$(TEXT_EVENTS_ARC)/%, $(wildcard $(TEXT_EVENTS_ROOT)/*))
 SCRIPT_FILES      := $(patsubst $(FIELD_SCRIPT_ROOT)/%.pks, $(W2Playground)/%.ev, $(wildcard $(FIELD_SCRIPT_ROOT)/*))
 ROOT_FILES        := $(wildcard $(GENERAL_ROOT)/*.bin)
@@ -33,7 +36,7 @@ SCRIPT_LIB   := ctrmap/resources/scripting/cm_ide/sdk/EV_GEN_V/SDK5-B2W2-Generat
 PKS_INCLUDE  := $(build_dir)/.temp.lib
 
 # Final
-data: $(W2Playground) $(build_fs)/$(TEXT_EVENTS_ARC) $(SCRIPT_FILES)
+data: $(build_fs) $(W2Playground) $(build_fs)/$(TEXT_SYSTEM_ARC) $(build_fs)/$(TEXT_EVENTS_ARC) $(SCRIPT_FILES)
 
 # -------------------------------------------------------------------
 # Rules
@@ -46,6 +49,21 @@ $(W2Playground): $(ROOT_FILES)
 		mkdir -p $@; \
 		cp $$file $@; \
 	  done
+
+# All unstructured NARCs
+$(build_fs): $(data_dir)/a
+	@ echo "[+] Storing all unstructured NARCs..."
+	@ mkdir -p $@
+	@ cp -R $< $@
+
+# Text System ARC
+## Builds the ARC.
+$(build_fs)/$(TEXT_SYSTEM_ARC): $(TEXT_SYSTEM_FILES)
+## Builds the files in the ARC.
+$(build_fs)/$(TEXT_SYSTEM_ARC)/%: $(TEXT_SYSTEM_ROOT)/%.txt
+	@ echo "[+] Encoding $^..."
+	@ mkdir -p $(dir $@)
+	@ java -cp $(CTRMapV):$(CTRMap) ctrmap.util.tools.TextUtil -t bin -a system -i $^ -o $@
 
 # Text Events ARC
 ## Builds the ARC.

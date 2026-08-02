@@ -11,9 +11,10 @@ DECLARATION_PATTERN = r"\b[A-Za-z_][A-Za-z0-9_<>:]*\s+([A-Za-z_][A-Za-z0-9_]*)\s
 CALL_PATTERN = r"\b(?!(?:if|while|for|switch|return|void|int|char|else|catch)\b)([A-Za-z_][A-Za-z0-9_]*)\s*\("
 FULL_COPY_PATTERN = r"\bFULL_COPY_[a-zA-Z0-9_]*"
 EXTERN_PATTERN = r"\bextern\b[^{}]*?\b([A-Za-z0-9_]+)\s*(?:\[[^\]]*\])*\s*;"
+ALIAS_PATTERN = r"ALIAS\(([^,]+),"
 
 # (Not a catch-all blacklist... needs manual correction *often*)
-blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags"]
+blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias"]
 final_matches = []
 
 def sanitize(item):
@@ -51,7 +52,8 @@ def parse_cpp(file_path):
     calls = findall(CALL_PATTERN, code)
     fullcopys = findall(FULL_COPY_PATTERN, code)
     externs = findall(EXTERN_PATTERN, code)
-    for item in set(declarations + calls + fullcopys + externs):
+    aliases = findall(ALIAS_PATTERN, code)
+    for item in set(declarations + calls + fullcopys + externs + aliases):
         sanitize(item)
 
 def parse_asm(file_path):

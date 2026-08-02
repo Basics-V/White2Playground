@@ -1,6 +1,7 @@
 #include "Util.h"
 #include "Bag.h"
 #include "swantypes.h"
+#include "FieldAction.h"
 
 #ifdef CUSTOM_ITEM_USE
 #include "CUSTOM_ITEM_USE.h"
@@ -15,24 +16,7 @@ struct FieldActionWork {
     // ...
 };
 
-typedef GameEvent* (*FieldCommonEventFunc)(Field*, GameSystem*);
-#ifndef PW2CODE_INFINITE_REPEL
-#define FieldCommonEventTableMax 6
-#else
-#define FieldCommonEventTableMax 7
-#endif
-struct FieldCommonEventEntry {
-    FieldCommonEventFunc func;
-    u32 type;
-};
-
-extern FieldCommonEventEntry FIELD_COMMON_EVENTS[];
-
 #ifdef CUSTOM_ITEM_USE
-#ifdef PW2CODE_INFINITE_REPEL
-#define FieldCommonEventInfiniteRepel 6
-extern "C" GameEvent* EventFieldToggleRepel_Create(Field*, GameSystem*);
-#endif
 extern "C" {
     u32 EventFieldBag_HandleReturnAction(void*, FieldActionWork*);
     u32 EventFieldBag_HookReturnAction(void* FieldActionSys, FieldActionWork* actionData) {

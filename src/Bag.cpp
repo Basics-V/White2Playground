@@ -112,6 +112,11 @@ extern "C" {
                             */
                             (*state)++;
                             break;
+                        } else {
+                            // Failed to find a spot!
+                            EventScriptCall_Start(event, PHPKRDR_SCR_spawnFail, NULL, NULL, HEAPID_FIELDMAP);
+                            *state = 3;
+                            break;
                         }
                     }
                 }

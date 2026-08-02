@@ -52,7 +52,7 @@ extern "C" {
     void FieldSnd_ResumeAmbience(FieldSoundSystem*, int);
     void EncountSystem_CancelPhenomenon(EncountSystem*);
     void EncountSystem_CancelPhenomenonCore(EncountSystem*, void*);
-    FieldPlayer* Field_GetPlayer(Field*);
+    void EncountState_SyncToPlayer(EncountState*, FieldPlayer*);
     void RestartBGM(GameSystem* gameSys, u16 fadeOut, u16 fadeIn) {
         u16* radarWk = EventWork_GetWkPtr(gameSys->m_GameData->m_EventWork, PHPKRDR_EVTWK);
         if (*radarWk == 1) {
@@ -82,9 +82,9 @@ extern "C" {
     void THUMB_BRANCH_LINK_CreateRandomPhenomenonEvent_0xd0(EncountSystem* encSys) {
         EncountSystem_CancelPhenomenon(encSys);
     }
-    FieldPlayer* THUMB_BRANCH_LINK_CreateRandomPhenomenonEvent_0x10a(Field* field) {
-        RestartBGM(field->m_GameSystem, 0, 0);
-        return Field_GetPlayer(field);
+    void THUMB_BRANCH_LINK_EventWildBattleCall_CreateRandom_0x16a(EncountState* encState, FieldPlayer* fieldPlayer) {
+        RestartBGM(fieldPlayer->m_Field->m_GameSystem, 0, 0);
+        EncountState_SyncToPlayer(encState, fieldPlayer);
     }
 }
 #endif

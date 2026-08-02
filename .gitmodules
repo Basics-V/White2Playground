@@ -4,3 +4,6 @@
 [submodule "tools/pyidbutil"]
 	path = tools/pyidbutil
 	url = https://github.com/nlitsme/pyidbutil
+[submodule "include/PW2Code"]
+	path = include/PW2Code
+	url = https://github.com/MCMi460/PW2Code
