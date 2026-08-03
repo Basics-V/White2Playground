@@ -42,6 +42,7 @@ as_flags        := -mthumb -march=armv5t -r -W -x assembler-with-cpp
 c_flags         := -mthumb -march=armv5t -r -w
 mods            ?= # Example usage: make mods="PHENOM_RAND_MAN SKIP_INTRO_MOVIE"
 def_flags       := $(mods)
+include_flags   := -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/PW2Code
 
 # Debug mode
 debug ?= none
@@ -60,13 +61,17 @@ endif
 ifneq ($(filter PHENOM_POKERADAR,$(def_flags)),)
 	def_flags += CUSTOM_ITEM_USE CUSTOM_SCRIPT
 endif
+ifneq ($(filter BLOCK_HM,$(def_flags)),)
+	def_flags += CUSTOM_SCRIPT
+endif
 
 # Add the mod flags
 as_flags += $(addprefix -D, $(def_flags))
 c_flags  += $(addprefix -D, $(def_flags))
 
 # Add our includes
-c_flags  += -I$(incl_dir) -I$(incl_dir)/swan -I$(incl_dir)/PW2Code
+c_flags  += $(include_flags)
+as_flags += $(include_flags)
 
 vpath %.s   $(src_dir)
 vpath %.c   $(src_dir)
