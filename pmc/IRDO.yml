@@ -6,12 +6,15 @@ Segments:
     Name: 12
     Type: OVERLAY
   - ID: 0x2
-    Name: 36
+    Name: 33
     Type: OVERLAY
   - ID: 0x3
-    Name: 142
+    Name: 36
     Type: OVERLAY
   - ID: 0x4
+    Name: 142
+    Type: OVERLAY
+  - ID: 0x5
     Name: 162
     Type: OVERLAY
 
@@ -304,117 +307,120 @@ Symbols:
   - Name: FIELD_COMMON_EVENTS
     Segment: 0x1
     Address: 0x216CE24
-  - Name: Field_GetPlayerStateZoneID
+  - Name: EventFieldFishing_Callback
     Segment: 0x2
+    Address: 0x21793F9
+  - Name: Field_GetPlayerStateZoneID
+    Segment: 0x3
     Address: 0x2180519
   - Name: Field_GetEncountSystem
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x2180565
   - Name: Field_GetResolvedControllerTypeID
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x2180579
   - Name: Field_Get3DCi
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21812E1
   - Name: FieldMenu_CountActiveButtons
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A0281
   - Name: FieldMenu_CursorSelect
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A07ED
   - Name: FieldEncount_CreateWildPkm
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A0E01
   - Name: EncSys_IsActive
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A16E9
   - Name: EventWildBattleCall_CreateRandom
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A1791
   - Name: EncountState_SyncToPlayer
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A1F19
   - Name: UpdatePhenomenon
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A20AD
   - Name: EncountSystem_CancelPhenomenon
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A21B5
   - Name: CreateRandomPhenomenonEvent
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A2211
   - Name: positionShakingSpot
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A25C5
   - Name: SpawnPhenomenon
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A272D
   - Name: EncountSystem_CancelPhenomenonCore
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21A28AD
   - Name: EventFieldEffect_Create
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21BB871
   - Name: Fld3DCi_LoadG3DSceneTemplate
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21BC175
   - Name: ShortcutView_FillList
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21BF771
   - Name: FieldMenuButtonArray
-    Segment: 0x2
+    Segment: 0x3
     Address: 0x21D0088
   - Name: Bag_UpdateStateMachine
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x2199901
   - Name: Bag_DrawWindow
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219991D
   - Name: Bag_LoadItemName
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x21999F9
   - Name: Bag_IsItemRepel
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219A0F9
   - Name: Bag_CanUse
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219A11D
   - Name: Bag_RepelEffect
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219A145
   - Name: Bag_WaitDialogue
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219A22D
   - Name: Bag_SubItem
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219B381
   - Name: Bag_RegisterKeyItem
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219BE59
   - Name: Bag_GetUseButtonType
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219BF45
   - Name: Bag_IsItemRegistered
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219C129
   - Name: Bag_SetItemWindowState
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219C911
   - Name: Bag_IsUsableItemsEnabled
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219D47D
   - Name: BagDisp_DrawItemElement
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219E965
   - Name: Bag_CreateTextBox
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219F6E5
   - Name: Bag_SetMenuBrightness
-    Segment: 0x3
+    Segment: 0x4
     Address: 0x219FDE9
   - Name: NewGame_Main
-    Segment: 0x4
+    Segment: 0x5
     Address: 0x21A01ED
   - Name: NewGame_CreateTrainerCard
-    Segment: 0x4
+    Segment: 0x5
     Address: 0x21A04D9
