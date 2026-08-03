@@ -82,9 +82,9 @@ extern "C" {
     void THUMB_BRANCH_LINK_CreateRandomPhenomenonEvent_0xd0(EncountSystem* encSys) {
         EncountSystem_CancelPhenomenon(encSys);
     }
-    void THUMB_BRANCH_LINK_EventWildBattleCall_CreateRandom_0x16a(EncountState* encState, FieldPlayer* fieldPlayer) {
-        RestartBGM(fieldPlayer->m_Field->m_GameSystem, 0, 0);
-        EncountState_SyncToPlayer(encState, fieldPlayer);
+    void THUMB_BRANCH_LINK_EventWildBattleCall_CreateCore_0x12(GameSystem* gameSys, GameEvent* parentEvent, GameEventCallback callback, u32 evtDataSize) {
+        RestartBGM(gameSys, 0, 0);
+        GameEvent_Create(gameSys, parentEvent, callback, evtDataSize);
     }
 }
 #endif

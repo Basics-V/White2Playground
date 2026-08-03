@@ -37,6 +37,9 @@ Symbols:
   - Name: BagSave_GetActualItemPocket
     Segment: 0x0
     Address: 0x20088FD
+  - Name: RecordAddOne
+    Segment: 0x0
+    Address: 0x20095A1
   - Name: isBadgeObtained
     Segment: 0x0
     Address: 0x200C97D
@@ -67,6 +70,9 @@ Symbols:
   - Name: getTrainerCardDataBlkAddress
     Segment: 0x0
     Address: 0x2017975
+  - Name: BtlSetup_Free
+    Segment: 0x0
+    Address: 0x2017C85
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
@@ -106,6 +112,9 @@ Symbols:
   - Name: GFL_HeapFree
     Segment: 0x0
     Address: 0x203A279
+  - Name: GCTX_HIDGetPressedKeys
+    Segment: 0x0
+    Address: 0x203DF29
   - Name: GFL_BGSysClearScr
     Segment: 0x0
     Address: 0x2045765
@@ -298,6 +307,9 @@ Symbols:
   - Name: FindFieldActor
     Segment: 0x1
     Address: 0x2167A55
+  - Name: EventWildBattleCall_CreateCore
+    Segment: 0x1
+    Address: 0x2168685
   - Name: GLOBAL_SCRIPT_TABLE
     Segment: 0x1
     Address: 0x216AFD8
@@ -310,6 +322,12 @@ Symbols:
   - Name: EventFieldFishing_Callback
     Segment: 0x2
     Address: 0x21793F9
+  - Name: FieldFishing_AwaitInput
+    Segment: 0x2
+    Address: 0x21795FD
+  - Name: FieldFishing_BobberDestroy
+    Segment: 0x2
+    Address: 0x2179691
   - Name: Field_GetPlayerStateZoneID
     Segment: 0x3
     Address: 0x2180519
@@ -334,9 +352,6 @@ Symbols:
   - Name: EncSys_IsActive
     Segment: 0x3
     Address: 0x21A16E9
-  - Name: EventWildBattleCall_CreateRandom
-    Segment: 0x3
-    Address: 0x21A1791
   - Name: EncountState_SyncToPlayer
     Segment: 0x3
     Address: 0x21A1F19
