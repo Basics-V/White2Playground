@@ -17,6 +17,9 @@ Segments:
   - ID: 0x5
     Name: 162
     Type: OVERLAY
+  - ID: 0x6
+    Name: 165
+    Type: OVERLAY
 
 Symbols:
   - Name: GFL_RandomLCAlt
@@ -280,6 +283,12 @@ Symbols:
   - Name: FieldScript_CheckSCRID
     Segment: 0x1
     Address: 0x2153D21
+  - Name: EventDigCall_Callback
+    Segment: 0x1
+    Address: 0x2159849
+  - Name: EventTeleportCall_Callback
+    Segment: 0x1
+    Address: 0x21598F1
   - Name: EventShortcutChoicePopup_Callback
     Segment: 0x1
     Address: 0x215AC05
@@ -439,3 +448,6 @@ Symbols:
   - Name: NewGame_CreateTrainerCard
     Segment: 0x5
     Address: 0x21A04D9
+  - Name: PkmList_MoveMatchHM
+    Segment: 0x6
+    Address: 0x219D9F9
