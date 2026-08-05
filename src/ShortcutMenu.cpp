@@ -72,15 +72,9 @@ extern "C" {
         return PML_ItemGetType(itemID);
         #endif
     }
-    /*
-        TODO: Remove pre-processor conditional
-        Due to unknown reasons (possibly a bug in libRPM?), PW2Code is not currently compatible with this method
-    */
-    #if !defined(PW2CODE_EXPAND_ITEMS) && !defined(PW2CODE_INFINITE_CANDY) && !defined(PW2CODE_INFINITE_REPEL)
     ALIAS(THUMB_BRANCH_LINK_BagSave_GetPocketPtrByItem_0xa,    PML_ItemGetType_Wrapper);
     ALIAS(THUMB_BRANCH_LINK_BagSave_GetExistingItemPocket_0x8, PML_ItemGetType_Wrapper);
     ALIAS(THUMB_BRANCH_LINK_BagSave_GetActualItemPocket_0x12,  PML_ItemGetType_Wrapper);
-    #endif
 
     #if defined(PW2CODE_INFINITE_CANDY) || defined(PW2CODE_INFINITE_REPEL)
     REG_ID PW2Code_GetRegistrableID(ItemID);
@@ -149,11 +143,6 @@ extern "C" {
         return PML_ItemGetParam(itemWork, ITSTAT_FLAG2);
     }
 
-    /*
-        TODO: Remove pre-processor conditional
-        Due to unknown reasons (possibly a bug in libRPM?), PW2Code is not currently compatible with this method
-    */
-    #if !defined(PW2CODE_EXPAND_ITEMS) && !defined(PW2CODE_INFINITE_CANDY) && !defined(PW2CODE_INFINITE_REPEL)
     u32 THUMB_BRANCH_PlayerActionPerms_IsActionBlocked(PlayerActionPerms* perms, ACTION_ID actionID) {
         if (actionID == 0xFE) return 0;
 
@@ -163,7 +152,6 @@ extern "C" {
         return perms->actionsBlocked[actionID];
         #endif
     }
-    #endif
 
     #ifdef CUSTOM_SHORTCUT_TXT
     void ListMenuCore_AppendMsgOption(void*, void*, u32, u32, HeapID);
