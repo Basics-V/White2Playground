@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef PHENOM_RAND_MAN
 @ Load GameData* into R1 for IncPhenomenonStepCount

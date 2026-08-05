@@ -5,6 +5,7 @@
     You can find his project here:
     https://github.com/Paideieitor/PW2Code
 */
+#include "MODS.h"
 // White2Playground
 #include "Util.h"
 #include "FieldAction.h"

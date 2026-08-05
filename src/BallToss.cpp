@@ -27,6 +27,7 @@
     See the script command documentation below for more information:
     https://docs.google.com/spreadsheets/d/1zvLQFVdv6kbEgP9TY9yfV6ChK0qsz79E6PvF5lohnGk/edit?gid=0#gid=0&range=B481
 */
+#include "MODS.h"
 
 #include "swantypes.h"
 #include "Util.h"

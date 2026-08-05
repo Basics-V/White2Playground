@@ -1,9 +1,9 @@
+#include "MODS.h"
 #include "swantypes.h"
 #include "system/game_data.h"
 #include "FieldEncount.h"
 
 #ifdef PHENOM_SHINY_TWEAK
-#include "PHENOM_SHINY_TWEAK.h"
 #include "Util.h"
 extern "C" {
     int PassPower_ApplyLuckyShiny(u16);

@@ -10,9 +10,13 @@ rom_code        := IRDO
 build_dir        = build
 incl_dir        := include
 
+romfs           := $(build_dir)/romfs
+build_fs        := $(romfs)/data
+
 src_dir          = src
 data_dir        := data
 pmc_dir         := pmc
+patches_dir     := $(build_fs)/patches
 
 # Targets
 ## Code
@@ -25,6 +29,7 @@ cpp_obj         := $(addprefix $(build_dir)/code/, $(notdir $(cpp_src:.cpp=_cpp.
 headers         := $(wildcard $(incl_dir)/*.h)
 srcs            := $(asm_src) $(c_src) $(cpp_src)
 objs            := $(asm_obj) $(c_obj) $(cpp_obj)
+esdb            := $(pmc_dir)/$(rom_code).yml
 
 # Tools
 as              := arm-none-eabi-as
@@ -57,14 +62,6 @@ ifneq ($(debug), none)
 	endif
 endif
 
-# Some mods have dependencies
-ifneq ($(filter PHENOM_POKERADAR,$(def_flags)),)
-	def_flags += CUSTOM_ITEM_USE CUSTOM_SCRIPT
-endif
-ifneq ($(filter BLOCK_HM,$(def_flags)),)
-	def_flags += CUSTOM_SCRIPT
-endif
-
 # Add the mod flags
 as_flags += $(addprefix -D, $(def_flags))
 c_flags  += $(addprefix -D, $(def_flags))
@@ -84,9 +81,14 @@ vpath %.cpp $(src_dir)
 all: code
 
 # Code
-code: $(build_dir)/$(project).elf
+code: $(patches_dir)/$(project).dll
 
-$(build_dir)/$(project).elf: $(objs) $(build_data)
+$(patches_dir)/%.dll: $(build_dir)/%.elf
+	@ mkdir -p $(@D)
+	@ echo "[>] Creating DLL $@..."
+	@ java -cp $(CTRMap) rpm.cli.RPMTool -i $< --fourcc DLXF -o $@ --esdb $(esdb) --generate-relocations > /dev/null
+
+$(build_dir)/%.elf: $(objs) $(build_data)
 	@ echo "[+] Linking all objects into $@..."
 	@ $(ld) -o $@ -r $^
 

@@ -1,8 +1,7 @@
 .thumb
+#include "MODS.h"
 
 #ifdef HIDE_HM
-#include "HIDE_HM.h"
-
 #ifdef HIDE_DIG
 @ Return 0 for move dig in list
 FULL_COPY_PkmList_MoveMatchHM_0x80:

@@ -2,24 +2,28 @@
     A big thank you to Paideieitor's PW2Code for reference
     and research on the Bag!
 */
+#include "MODS.h"
+#include "swantypes.h"
 
 #include "Util.h"
 #include "Bag.h"
 
 #ifdef CUSTOM_ITEM_USE
 #include "CUSTOM_ITEM_USE.h"
-#endif
-
-#ifdef CUSTOM_ITEM_USE
 #ifdef PHENOM_POKERADAR
-#include "PHENOM_POKERADAR.h"
 #include "data/heapid_def.h"
 #include "system/game_event.h"
 #include "nds/mem.h"
+#include "field/fieldmap.h"
 #include "field/field_encount.h"
 #include "field/field_encount_data.h"
 #include "field/field_effect_encount_state.h"
 #include "field/field_3dci.h"
+
+struct PhenomRadarEvent {
+    Field* field;
+    u8 flags;
+};
 #endif
 
 extern "C" {

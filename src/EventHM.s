@@ -1,8 +1,7 @@
 .thumb
+#include "MODS.h"
 
 #ifdef BLOCK_HM
-#include "BLOCK_HM.h"
-
 @ Disable use of dig
 FULL_COPY_EventDigCall_Callback_0x3a:
     MOV R0,#0x1

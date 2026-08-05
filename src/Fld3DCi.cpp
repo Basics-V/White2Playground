@@ -2,6 +2,7 @@
     A more complete implementation is planned.
     For now, enjoy a hacky work-around for PHENOM_POKERADAR!
 */
+#include "MODS.h"
 #include "swantypes.h"
 
 struct Fld3DCi_Meta {
@@ -18,7 +19,6 @@ struct Fld3DCi_Meta {
 };
 
 #ifdef PHENOM_POKERADAR
-#include "PHENOM_POKERADAR.h"
 #include "Util.h"
 #include "gfl/fs/gfl_archive.h"
 #include "field/field_eventwork.h"

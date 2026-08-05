@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef FISHING_NO_WAIT
 FULL_COPY_EventFieldFishing_Callback_0xa4:

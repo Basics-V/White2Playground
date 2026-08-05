@@ -1,5 +1,6 @@
 #pragma once
 #include "swantypes.h"
+#include "MODS.h"
 
 #ifdef CUSTOM_ITEM_USE
 #include "Bag.h"

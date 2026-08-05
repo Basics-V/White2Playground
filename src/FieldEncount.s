@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef PHENOM_SHINY_TWEAK
 FULL_COPY_FieldEncount_CreateWildPkm_0x2a:

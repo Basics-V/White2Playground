@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef SKIP_INTRO_MOVIE
 @ Move on to the title screen

@@ -1,3 +1,4 @@
+#include "MODS.h"
 #include "swantypes.h"
 #include "FieldEncount.h"
 #include "Util.h"

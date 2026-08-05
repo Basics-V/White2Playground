@@ -4,6 +4,7 @@
     A huge thank you to the contributors of ds-pokemon-hacking
     for all of their hard work over the years!
 */
+#include "MODS.h"
 #include "nds/fs.h"
 
 extern "C" {

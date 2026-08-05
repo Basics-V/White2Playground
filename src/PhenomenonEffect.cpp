@@ -1,3 +1,4 @@
+#include "MODS.h"
 #include "Util.h"
 #include "field/field_eventwork.h"
 #include "field/field_encount.h"
@@ -42,7 +43,6 @@ extern "C" {
 #endif
 
 #ifdef PHENOM_POKERADAR
-#include "PHENOM_POKERADAR.h"
 extern "C" {
     u16 Field_GetPlayerStateZoneID(Field*);
     u8 GameData_GetSeason(GameData*);

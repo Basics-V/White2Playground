@@ -5,15 +5,16 @@
     who worked on gscr_loader.c and scr_plgext_loader.c for their
     pioneering in this incredible feat!
 */
+#include "MODS.h"
 #include "swantypes.h"
 #include "GlobalScript.h"
 #include "Util.h"
 
 #ifdef CUSTOM_SCRIPT
+#include "CUSTOM_SCRIPT.h"
 #include "data/arcid_def.h"
 #include "gfl/core/gfl_heap.h"
 #include "gfl/fs/gfl_archive.h"
-#include "CUSTOM_SCRIPT.h"
 #include "FileHandler.h"
 extern "C" {
     // Allow our scripts to be called from the field

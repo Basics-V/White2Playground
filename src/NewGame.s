@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef SKIP_INTRO_DIALOGUE
 @ Always skip to trainer card registration

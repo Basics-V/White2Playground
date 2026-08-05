@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef CUSTOM_ITEM_USE
 @ Expose Bag* to Bag_IsItemRepel()

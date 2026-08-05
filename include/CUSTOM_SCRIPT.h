@@ -1,17 +1,12 @@
 #pragma once
 #include "GlobalScript.h"
+#include "MODS.h"
 
+#ifdef CUSTOM_SCRIPT
 struct CustomScriptEntry {
     ScriptGlobalTableEntry global;
     const char* name;
 };
-
-#ifdef PHENOM_POKERADAR
-#include "PHENOM_POKERADAR.h"
-#endif
-#ifdef BLOCK_HM
-#include "BLOCK_HM.h"
-#endif
 
 CustomScriptEntry customScriptTable[] = {
     #ifdef PHENOM_POKERADAR
@@ -40,3 +35,4 @@ CustomScriptEntry customScriptTable[] = {
     #endif
     { .name = NULL, }, // Sentinel - don't remove!
 };
+#endif

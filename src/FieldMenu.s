@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef NO_SAVE
 @ Don't call cursor select icon animation updates

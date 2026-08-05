@@ -1,3 +1,4 @@
+#include "MODS.h"
 #include "Util.h"
 #include "Bag.h"
 #include "swantypes.h"

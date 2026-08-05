@@ -1,3 +1,4 @@
+#include "MODS.h"
 #include "Util.h"
 #include "swantypes.h"
 #include "gfl/str/string.h"

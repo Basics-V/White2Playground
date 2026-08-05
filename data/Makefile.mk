@@ -3,7 +3,6 @@
 ### for all of their hard work over the years!
 
 # General file system definition
-build_fs     := $(build_dir)/romfs/data
 W2Playground := $(build_fs)/White2Playground
 
 # -------------------------------------------------------------------

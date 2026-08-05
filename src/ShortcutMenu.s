@@ -1,4 +1,5 @@
 .thumb
+#include "MODS.h"
 
 #ifdef CUSTOM_ITEM_USE
 FULL_COPY_BagDisp_DrawItemElement_0x1ca:
