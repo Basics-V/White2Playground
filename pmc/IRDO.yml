@@ -20,6 +20,9 @@ Segments:
   - ID: 0x6
     Name: 165
     Type: OVERLAY
+  - ID: 0x7
+    Name: 167
+    Type: OVERLAY
 
 Symbols:
   - Name: GFL_RandomLCAlt
@@ -28,6 +31,12 @@ Symbols:
   - Name: GFL_SndSEPlay
     Segment: 0x0
     Address: 0x2006255
+  - Name: BoxSaveAccessor_GetMainSave
+    Segment: 0x0
+    Address: 0x2007789
+  - Name: BoxSaveAccessor_SetPkm
+    Segment: 0x0
+    Address: 0x2007871
   - Name: BagSave_GetPocketPtrByItem
     Segment: 0x0
     Address: 0x2008175
@@ -79,6 +88,21 @@ Symbols:
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
+  - Name: PokeParty_GetParam
+    Segment: 0x0
+    Address: 0x201CD25
+  - Name: PokeParty_SetParam
+    Segment: 0x0
+    Address: 0x201CD49
+  - Name: PokeParty_RecalcStatsCore
+    Segment: 0x0
+    Address: 0x201DB3D
+  - Name: PML_PkmGetParamCore
+    Segment: 0x0
+    Address: 0x201DEF5
+  - Name: PokeParty_Recover
+    Segment: 0x0
+    Address: 0x2020EF5
   - Name: copyVarForText
     Segment: 0x0
     Address: 0x20245D5
@@ -451,3 +475,9 @@ Symbols:
   - Name: PkmList_MoveMatchHM
     Segment: 0x6
     Address: 0x219D9F9
+  - Name: PokeList_CanItemWithBattleStatsBeUsed
+    Segment: 0x6
+    Address: 0x21A2429
+  - Name: ServerFlow_UseItemRevive
+    Segment: 0x7
+    Address: 0x21AFBC5

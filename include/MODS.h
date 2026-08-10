@@ -43,3 +43,9 @@
 #define HIDE_DIG
 #define HIDE_TELEPORT
 #endif
+
+#ifdef NUZLOCKE
+#define NO_REVIVE
+#define PERMADEATH
+#define EXCLUSIVE_CAPTURE_LOCATION
+#endif

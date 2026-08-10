@@ -16,7 +16,7 @@ CustomScriptEntry customScriptTable[] = {
             .endID     = PHPKRDR_SCRID_MAX,
             .scrDatID  = PHPKRDR_SCRDAT,
             .textArcID = 3,
-            .textDatID = 800,
+            .textDatID = PHPKRDR_TXTDAT,
         },
         .name = "White2Playground/PHENOM_POKERADAR.ev",
     },

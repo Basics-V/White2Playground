@@ -88,6 +88,7 @@ $(patches_dir)/%.dll: $(build_dir)/%.elf
 	@ echo "[>] Creating DLL $@..."
 	@ java -cp $(CTRMap) rpm.cli.RPMTool -i $< --fourcc DLXF -o $@ --esdb $(esdb) --generate-relocations > /dev/null
 
+.PRECIOUS: $(build_dir)/%.elf
 $(build_dir)/%.elf: $(objs) $(build_data)
 	@ echo "[+] Linking all objects into $@..."
 	@ $(ld) -o $@ -r $^
