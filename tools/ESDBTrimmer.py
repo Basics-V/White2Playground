@@ -14,7 +14,7 @@ EXTERN_PATTERN = r"\bextern\b[^{}]*?\b([A-Za-z0-9_]+)\s*(?:\[[^\]]*\])*\s*;"
 ALIAS_PATTERN = r"ALIAS\(([^,]+),"
 
 # (Not a catch-all blacklist... needs manual correction *often*)
-blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias"]
+blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias", "ret"]
 final_matches = []
 
 def sanitize(item):

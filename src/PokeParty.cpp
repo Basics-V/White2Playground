@@ -1,7 +1,7 @@
 #include "MODS.h"
 #include "swantypes.h"
 
-#ifdef NO_REVIVE
+#ifdef PERMADEATH
 #include "Util.h"
 #include "pml/pokeparty_decs.h"
 extern "C" {

@@ -2,21 +2,17 @@
 #include "Util.h"
 #include "swantypes.h"
 #include "gfl/str/string.h"
-
-enum Gender: u8 {
-    MALE,
-    FEMALE,
-};
+#include "data/trainer.h"
 
 #define INTRO_NAME   L"BasicsV" // Max is 7 characters
 #define INTRO_GENDER MALE
 
 #ifdef SKIP_INTRO_DIALOGUE
 extern "C" {
-    void NewGame_CreateTrainerCard(void*, StrBuf*, Gender);
+    void NewGame_CreateTrainerCard(TrainerCard*, StrBuf*, Gender);
 
     // Force set our specified/set name and gender
-    void THUMB_BRANCH_LINK_NewGame_Main_0x8e(void* trainerCardWork, StrBuf* strBuf, Gender gender) {
+    void THUMB_BRANCH_LINK_NewGame_Main_0x8e(TrainerCard* trainerCardWork, StrBuf* strBuf, Gender gender) {
         // Store INTRO_NAME in the StrBuf
         u16* string = strBuf->string;
         int i;

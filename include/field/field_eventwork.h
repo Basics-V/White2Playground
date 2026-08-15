@@ -6,4 +6,6 @@ extern "C" {
     EventWorkSave* GameData_GetEventWork(GameData*); // Technically system/game_data.h
     u16* EventWork_GetWkPtr(EventWorkSave*, int);
     bool EventWork_FlagGet(EventWorkSave*, int);
+    void EventWork_FlagSet(EventWorkSave*, int);
+    void EventWork_FlagReset(EventWorkSave*, int);
 }

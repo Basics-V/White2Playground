@@ -1,7 +1,7 @@
 #include "MODS.h"
 #include "swantypes.h"
 
-#ifdef NO_REVIVE
+#ifdef PERMADEATH
 #include "pml/pokeparty_decs.h"
 #include "gfl/core/gfl_heap.h"
 extern "C" {

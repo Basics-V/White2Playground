@@ -23,6 +23,12 @@ Segments:
   - ID: 0x7
     Name: 167
     Type: OVERLAY
+  - ID: 0x8
+    Name: 295
+    Type: OVERLAY
+  - ID: 0x9
+    Name: 331
+    Type: OVERLAY
 
 Symbols:
   - Name: GFL_RandomLCAlt
@@ -31,6 +37,21 @@ Symbols:
   - Name: GFL_SndSEPlay
     Segment: 0x0
     Address: 0x2006255
+  - Name: SaveControl_GetInstance
+    Segment: 0x0
+    Address: 0x20072FD
+  - Name: SaveControl_Delete
+    Segment: 0x0
+    Address: 0x20074AD
+  - Name: loadExtraSaveBlk
+    Segment: 0x0
+    Address: 0x20074ED
+  - Name: freeIntermediateSaveExtraBlksAfterLoad
+    Segment: 0x0
+    Address: 0x2007535
+  - Name: clearExtraSaveBlk
+    Segment: 0x0
+    Address: 0x20076A5
   - Name: BoxSaveAccessor_GetMainSave
     Segment: 0x0
     Address: 0x2007789
@@ -49,12 +70,21 @@ Symbols:
   - Name: BagSave_GetActualItemPocket
     Segment: 0x0
     Address: 0x20088FD
+  - Name: getTrainerGender
+    Segment: 0x0
+    Address: 0x2008BF1
   - Name: RecordAddOne
     Segment: 0x0
     Address: 0x20095A1
+  - Name: IsCGearUnlocked
+    Segment: 0x0
+    Address: 0x20098C1
   - Name: isBadgeObtained
     Segment: 0x0
     Address: 0x200C97D
+  - Name: DeleteDreamRadarSaveData
+    Segment: 0x0
+    Address: 0x2011559
   - Name: PassPower_ApplyLuckyShiny
     Segment: 0x0
     Address: 0x20138F9
@@ -79,12 +109,27 @@ Symbols:
   - Name: GameData_GetEncountState
     Segment: 0x0
     Address: 0x20174A5
+  - Name: GameData_QueueSave
+    Segment: 0x0
+    Address: 0x201782D
+  - Name: GameData_ExecSave
+    Segment: 0x0
+    Address: 0x2017851
   - Name: getTrainerCardDataBlkAddress
     Segment: 0x0
     Address: 0x2017975
+  - Name: getConstDataBlock
+    Segment: 0x0
+    Address: 0x2017A5D
   - Name: BtlSetup_Free
     Segment: 0x0
     Address: 0x2017C85
+  - Name: EventWork_FlagGet
+    Segment: 0x0
+    Address: 0x20191D9
+  - Name: EventWork_FlagSet
+    Segment: 0x0
+    Address: 0x2019205
   - Name: EventWork_GetWkPtr
     Segment: 0x0
     Address: 0x20192C1
@@ -112,6 +157,9 @@ Symbols:
   - Name: ListMenuCore_AppendMsgOption
     Segment: 0x0
     Address: 0x2024FE9
+  - Name: YesNoUI_AwaitDecision
+    Segment: 0x0
+    Address: 0x2025661
   - Name: PML_ItemGetParam
     Segment: 0x0
     Address: 0x202684D
@@ -139,6 +187,15 @@ Symbols:
   - Name: GFL_HeapFree
     Segment: 0x0
     Address: 0x203A279
+  - Name: GFL_OvlUnload
+    Segment: 0x0
+    Address: 0x203CDF5
+  - Name: GFL_OvlLoad
+    Segment: 0x0
+    Address: 0x203CE39
+  - Name: GFL_HIDDoSoftReset
+    Segment: 0x0
+    Address: 0x203D525
   - Name: GCTX_HIDGetPressedKeys
     Segment: 0x0
     Address: 0x203DF29
@@ -160,6 +217,9 @@ Symbols:
   - Name: GFL_MsgDataLoadStrbuf
     Segment: 0x0
     Address: 0x2048865
+  - Name: GFL_MsgDataLoadStrbufNew
+    Segment: 0x0
+    Address: 0x20489B9
   - Name: GFL_ArcSysRead
     Segment: 0x0
     Address: 0x204A955
@@ -190,6 +250,9 @@ Symbols:
   - Name: sys_memset
     Segment: 0x0
     Address: 0x20787D4
+  - Name: sys_reset
+    Segment: 0x0
+    Address: 0x207C2C8
   - Name: vsnprintf
     Segment: 0x0
     Address: 0x2085B18
@@ -406,6 +469,9 @@ Symbols:
   - Name: EncountSystem_CancelPhenomenonCore
     Segment: 0x3
     Address: 0x21A28AD
+  - Name: SaveDataWriteCore
+    Segment: 0x3
+    Address: 0x21A6CD5
   - Name: EventFieldEffect_Create
     Segment: 0x3
     Address: 0x21BB871
@@ -466,6 +532,18 @@ Symbols:
   - Name: Bag_SetMenuBrightness
     Segment: 0x4
     Address: 0x219FDE9
+  - Name: StartMenu_ContinueState
+    Segment: 0x5
+    Address: 0x219DFAD
+  - Name: StartMenu_InitBmpWin
+    Segment: 0x5
+    Address: 0x219E87D
+  - Name: StartMenu_DispMsgWin
+    Segment: 0x5
+    Address: 0x219FE85
+  - Name: StartMenu_AwaitMsgDisp
+    Segment: 0x5
+    Address: 0x219FF25
   - Name: NewGame_Main
     Segment: 0x5
     Address: 0x21A01ED
@@ -481,3 +559,18 @@ Symbols:
   - Name: ServerFlow_UseItemRevive
     Segment: 0x7
     Address: 0x21AFBC5
+  - Name: BlackoutDisplayProc_Init
+    Segment: 0x8
+    Address: 0x219D4A1
+  - Name: BlackoutDisplayProc_Update
+    Segment: 0x8
+    Address: 0x219D4D9
+  - Name: BlackoutDisplayProc_End
+    Segment: 0x8
+    Address: 0x219D63D
+  - Name: BLACKOUT_DISPLAY_PROC_LIST
+    Segment: 0x8
+    Address: 0x219D7B4
+  - Name: SaveOutside_ClearData
+    Segment: 0x9
+    Address: 0x21BEE21

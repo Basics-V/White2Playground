@@ -1,7 +1,7 @@
 .thumb
 #include "MODS.h"
 
-#ifdef NO_REVIVE
+#ifdef PERMADEATH
 @ Don't allow revive-type items to be used
 FULL_COPY_PokeList_CanItemWithBattleStatsBeUsed_0xfe:
     MOV R0,#0x0
