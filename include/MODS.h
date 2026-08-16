@@ -44,6 +44,10 @@
     #define HIDE_TELEPORT
 #endif
 
+#if defined(FISHING_CONVENIENT) && defined(FISHING_NO_WAIT)
+    #error Please choose either FISHING_NO_WAIT or FISHING_CONVENIENT, not both!
+#endif
+
 #ifdef NUZLOCKE
     #ifndef PERMADEATH
         #define PERMADEATH
@@ -51,8 +55,8 @@
     #ifndef PARTY_KILL
         #define PARTY_KILL
     #endif
-    #ifndef EXCLUSIVE_CAPTURE_LOCATION
-        #define EXCLUSIVE_CAPTURE_LOCATION
+    #ifndef FIRST_ENCOUNTER
+        #define FIRST_ENCOUNTER
     #endif
     #ifndef FORCE_NICKNAME
         #define FORCE_NICKNAME
@@ -62,4 +66,10 @@
 #ifdef PARTY_KILL
     #define TPK_FLAG   3037
     #define TPK_TXTDAT 737
+#endif
+
+#ifdef FIRST_ENCOUNTER
+    #define ZONE_MAX    615
+    #define CAP_VAR_MAX (ZONE_MAX >> 4) + 1
+    #define ENC1_TXTDAT 738
 #endif

@@ -5,7 +5,7 @@ esdb: $(pmc_dir)/$(rom_code).yml
 # Misc. vars
 venv     := $(build_dir)/venv
 reqs     := pyyaml
-ext_esdb := $(wildcard $(incl_dir)/*.yml)
+ext_esdb := $(wildcard $(incl_dir)/*.yml) $(incl_dir)/PW2Code/ESDB.yml
 ext_idb  := $(wildcard $(incl_dir)/*.idb)
 idb_esdb := $(addprefix $(build_dir)/idb/, $(notdir $(ext_idb:.idb=.yml)))
 

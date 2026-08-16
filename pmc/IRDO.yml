@@ -24,9 +24,18 @@ Segments:
     Name: 167
     Type: OVERLAY
   - ID: 0x8
-    Name: 295
+    Name: 280
     Type: OVERLAY
   - ID: 0x9
+    Name: 281
+    Type: OVERLAY
+  - ID: 0xA
+    Name: 295
+    Type: OVERLAY
+  - ID: 0xB
+    Name: 297
+    Type: OVERLAY
+  - ID: 0xC
     Name: 331
     Type: OVERLAY
 
@@ -109,6 +118,9 @@ Symbols:
   - Name: GameData_GetEncountState
     Segment: 0x0
     Address: 0x20174A5
+  - Name: GameData_GetLastBtlResult
+    Segment: 0x0
+    Address: 0x20174AD
   - Name: GameData_QueueSave
     Segment: 0x0
     Address: 0x201782D
@@ -322,6 +334,9 @@ Symbols:
   - Name: __aeabi_uidivmod
     Segment: 0x0
     Address: 0x208D894
+  - Name: __aeabi_uidiv
+    Segment: 0x0
+    Address: 0x208D894
   - Name: __aeabi_uidivmod_impl
     Segment: 0x0
     Address: 0x208D89C
@@ -403,6 +418,9 @@ Symbols:
   - Name: FindFieldActor
     Segment: 0x1
     Address: 0x2167A55
+  - Name: EventWildBattleCall_Callback
+    Segment: 0x1
+    Address: 0x21684FD
   - Name: EventWildBattleCall_CreateCore
     Segment: 0x1
     Address: 0x2168685
@@ -556,21 +574,51 @@ Symbols:
   - Name: PokeList_CanItemWithBattleStatsBeUsed
     Segment: 0x6
     Address: 0x21A2429
+  - Name: MainModule_GetBattleType
+    Segment: 0x7
+    Address: 0x219BF15
+  - Name: ServerControl_ThrowBallRoot
+    Segment: 0x7
+    Address: 0x21AF5FD
   - Name: ServerFlow_UseItemRevive
     Segment: 0x7
     Address: 0x21AFBC5
-  - Name: BlackoutDisplayProc_Init
+  - Name: ServerCommand_TrainerBlockBall
+    Segment: 0x7
+    Address: 0x21B857D
+  - Name: BtlvCore_StartMessage
+    Segment: 0x7
+    Address: 0x21D022D
+  - Name: Btlv_StringParam_Setup
+    Segment: 0x7
+    Address: 0x21D0B2D
+  - Name: KeyboardEntry_Update
     Segment: 0x8
+    Address: 0x21DCE99
+  - Name: ProfanityCheck_CheckString
+    Segment: 0x9
+    Address: 0x21F5A8D
+  - Name: BlackoutDisplayProc_Init
+    Segment: 0xA
     Address: 0x219D4A1
   - Name: BlackoutDisplayProc_Update
-    Segment: 0x8
+    Segment: 0xA
     Address: 0x219D4D9
   - Name: BlackoutDisplayProc_End
-    Segment: 0x8
+    Segment: 0xA
     Address: 0x219D63D
   - Name: BLACKOUT_DISPLAY_PROC_LIST
-    Segment: 0x8
+    Segment: 0xA
     Address: 0x219D7B4
+  - Name: PokeNick_InitInner
+    Segment: 0xB
+    Address: 0x21F48BD
+  - Name: PokeNick_FreeInner
+    Segment: 0xB
+    Address: 0x21F4A5D
+  - Name: PokeNick_UpdateInner
+    Segment: 0xB
+    Address: 0x21F4AA5
   - Name: SaveOutside_ClearData
-    Segment: 0x9
+    Segment: 0xC
     Address: 0x21BEE21

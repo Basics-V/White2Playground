@@ -16,10 +16,6 @@ struct EventFieldFish {
 };
 
 #ifdef FISHING_CONVENIENT
-#ifdef FISHING_NO_WAIT
-#error Please choose either FISHING_NO_WAIT or FISHING_CONVENIENT, not both!
-#endif
-
 #include "nds/hid.h"
 #include "system/game_input.h"
 extern "C" {

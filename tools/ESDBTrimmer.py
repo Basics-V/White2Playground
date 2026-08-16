@@ -14,7 +14,7 @@ EXTERN_PATTERN = r"\bextern\b[^{}]*?\b([A-Za-z0-9_]+)\s*(?:\[[^\]]*\])*\s*;"
 ALIAS_PATTERN = r"ALIAS\(([^,]+),"
 
 # (Not a catch-all blacklist... needs manual correction *often*)
-blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias", "ret"]
+blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias", "ret", "type"]
 final_matches = []
 
 def sanitize(item):
@@ -124,7 +124,7 @@ def parse_esdbs(esdb_paths, curate = True):
                 for syms in esdb["Symbols"]:
                     if syms["Address"] == symbol["Address"]:
                         if syms["Segment"] == new_seg:
-                            exists = True
+                            #exists = True
                             break
                     if syms["Name"] == symbol["Name"]:
                         continue
