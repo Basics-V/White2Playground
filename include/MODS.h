@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef NO_SAVE
+    #define CUSTOM_FIELDMENU
+#endif
+
 #ifdef PHENOM_POKERADAR
     #ifndef CUSTOM_ITEM_USE
         #define CUSTOM_ITEM_USE

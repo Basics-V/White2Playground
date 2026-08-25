@@ -28,6 +28,7 @@ struct FieldMenuButtonEntry { /* 1 = Pokemon, 2 = PokeDex, 3 = Bag, 4 = Trainer 
     FieldMenuButton EOS; /* Always 0 */
 };
 
+#ifdef CUSTOM_FIELDMENU
 // Overwrite the existing FieldMenuButtonArray... no changes are made here
 FieldMenuButtonEntry FULL_COPY_FieldMenuButtonArray[] = {
     {
@@ -94,8 +95,9 @@ FieldMenuButtonEntry FULL_COPY_FieldMenuButtonArray[] = {
         EOS,
     },
 };
+#endif
 
-#ifdef NO_SAVE
+#ifdef CUSTOM_FIELDMENU
 // Only count the number of buttons that are bounded by non-FieldMenuButton.BLANK
 extern "C" u8 THUMB_BRANCH_FieldMenu_CountActiveButtons(u8 buttonEntry) {
     u32* entryButton = (u32*)&FULL_COPY_FieldMenuButtonArray[buttonEntry];
