@@ -5,7 +5,7 @@
 #include "MODS.h"
 #include "swantypes.h"
 
-struct Fld3DCi_Meta {
+typedef struct {
     u8 unk1[8];
 
     u16 bmd0Ind[2];
@@ -16,18 +16,17 @@ struct Fld3DCi_Meta {
     u16 bta0Ind2[4];
 
     u8 unk3[4];
-};
+} Fld3DCi_Meta;
 
 #ifdef PHENOM_POKERADAR
 #include "Util.h"
 #include "gfl/fs/gfl_archive.h"
 #include "field/field_eventwork.h"
-extern "C" {
-    void THUMB_BRANCH_LINK_Fld3DCi_LoadG3DSceneTemplate_0x12(Fld3DCi_Meta* cutInMeta, int arcID, u16 datID) {
-        GFL_ArcSysRead(cutInMeta, arcID, datID);
 
-        if (*EventWork_GetWkPtr(Mi4::GameSys()->m_GameData->m_EventWork, PHPKRDR_EVTWK) == 5)
-            cutInMeta->bmd0Ind[1] = PHPKRDR_FLDEFF_MAIN;
-    }
+void THUMB_BRANCH_LINK_Fld3DCi_LoadG3DSceneTemplate_0x12(Fld3DCi_Meta* cutInMeta, int arcID, u16 datID) {
+    GFL_ArcSysRead(cutInMeta, arcID, datID);
+
+    if (*EventWork_GetWkPtr(g_GameSystem->m_GameData->m_EventWork, PHPKRDR_EVTWK) == 5)
+        cutInMeta->bmd0Ind[1] = PHPKRDR_FLDEFF_MAIN;
 }
 #endif

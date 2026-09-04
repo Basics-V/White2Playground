@@ -44,31 +44,37 @@ namespace Mi4 {
         va_end(args);
     }
 }
+
+C_DECL_BEGIN
+void Mi4_Printf(const char* format, ...) {
+    Mi4::Printf(format);
+}
+C_DECL_END
 #endif
 
 #include "gfl/fs/gfl_archive.h"
 #include "gfl/g3d/gfl_g3d_system.h"
-extern "C" {
-    // https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply
-    void gfxTranslate(VecFx32* offset) {
-        fx32* MTX_TRANS = (fx32*)0x4000470;
-        *MTX_TRANS = offset->x;
-        *MTX_TRANS = offset->y;
-        *MTX_TRANS = offset->z;
-    }
-
-    // https://problemkaputt.de/gbatek.htm#ds3drearplane
-    void gfxClearDepth(u16 depth) {
-        u16* CLEAR_DEPTH = (u16*)0x4000354;
-        *CLEAR_DEPTH = depth;
-    }
-
-    // https://problemkaputt.de/gbatek.htm#ds3ddisplaycontrol for details, but implementation is GF's G3DSystem
-    // References GFL_G3DSysSetSwapBufferParams/ARM9:0x2049241
-    void GFL_G3DSysGetSwapBufferParams(b32* useManualAlphaSort, b32* depthBufferW) {
-        G3DSystem* g3dSys = (G3DSystem*)(*(int*)0x2141964 + 0xC);
-
-        if (useManualAlphaSort != NULL) *useManualAlphaSort = g3dSys->UseManualAlphaSort;
-        if (depthBufferW != NULL)       *depthBufferW = g3dSys->DepthBufferW;
-    }
+C_DECL_BEGIN
+// https://problemkaputt.de/gbatek.htm#ds3dmatrixloadmultiply
+void gfxTranslate(VecFx32* offset) {
+    fx32* MTX_TRANS = (fx32*)0x4000470;
+    *MTX_TRANS = offset->x;
+    *MTX_TRANS = offset->y;
+    *MTX_TRANS = offset->z;
 }
+
+// https://problemkaputt.de/gbatek.htm#ds3drearplane
+void gfxClearDepth(u16 depth) {
+    u16* CLEAR_DEPTH = (u16*)0x4000354;
+    *CLEAR_DEPTH = depth;
+}
+
+// https://problemkaputt.de/gbatek.htm#ds3ddisplaycontrol for details, but implementation is GF's G3DSystem
+// References GFL_G3DSysSetSwapBufferParams/ARM9:0x2049241
+void GFL_G3DSysGetSwapBufferParams(b32* useManualAlphaSort, b32* depthBufferW) {
+    G3DSystem* g3dSys = (G3DSystem*)(*(int*)0x2141964 + 0xC);
+
+    if (useManualAlphaSort != NULL) *useManualAlphaSort = g3dSys->UseManualAlphaSort;
+    if (depthBufferW != NULL)       *depthBufferW = g3dSys->DepthBufferW;
+}
+C_DECL_END

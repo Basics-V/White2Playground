@@ -2,7 +2,7 @@
 #include "Util.h"
 #include "swantypes.h"
 
-enum FieldMenuButton: u32 {
+typedef enum: u32 {
     EOS          = 0x0,
     BLANK        = 0x7,
     POKEMON      = 0x1,
@@ -16,9 +16,9 @@ enum FieldMenuButton: u32 {
     #endif
     OPTIONS      = 0x6,
     RETIRE       = 0x8,
-};
+} FieldMenuButton;
 
-struct FieldMenuButtonEntry { /* 1 = Pokemon, 2 = PokeDex, 3 = Bag, 4 = Trainer Card, 5 = Save, 6 = Options, 7 = Blank, 8 = Retire, 0 = EOS */
+typedef struct { /* 1 = Pokemon, 2 = PokeDex, 3 = Bag, 4 = Trainer Card, 5 = Save, 6 = Options, 7 = Blank, 8 = Retire, 0 = EOS */
     FieldMenuButton button0;
     FieldMenuButton button1;
     FieldMenuButton button2;
@@ -26,7 +26,7 @@ struct FieldMenuButtonEntry { /* 1 = Pokemon, 2 = PokeDex, 3 = Bag, 4 = Trainer 
     FieldMenuButton button4;
     FieldMenuButton button5;
     FieldMenuButton EOS; /* Always 0 */
-};
+} FieldMenuButtonEntry;
 
 #ifdef CUSTOM_FIELDMENU
 // Overwrite the existing FieldMenuButtonArray... no changes are made here
@@ -99,7 +99,7 @@ FieldMenuButtonEntry FULL_COPY_FieldMenuButtonArray[] = {
 
 #ifdef CUSTOM_FIELDMENU
 // Only count the number of buttons that are bounded by non-FieldMenuButton.BLANK
-extern "C" u8 THUMB_BRANCH_FieldMenu_CountActiveButtons(u8 buttonEntry) {
+u8 THUMB_BRANCH_FieldMenu_CountActiveButtons(u8 buttonEntry) {
     u32* entryButton = (u32*)&FULL_COPY_FieldMenuButtonArray[buttonEntry];
     int valid = 0;
     for (int i = 0; entryButton[i] != EOS; i++) {

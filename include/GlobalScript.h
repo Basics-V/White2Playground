@@ -1,6 +1,7 @@
 #pragma once
 #include "swantypes.h"
 
+STRUCT_DECLARE(ScriptGlobalTableEntry)
 struct ScriptGlobalTableEntry {
     u16 startID;
     u16 endID;
@@ -12,6 +13,6 @@ struct ScriptGlobalTableEntry {
 // Script table constant
 extern ScriptGlobalTableEntry GLOBAL_SCRIPT_TABLE[];
 
-extern "C" {
-    u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);
-}
+C_DECL_BEGIN
+u16 FieldScript_ResolveSCRID(u16, u16, u16*, u16*, u16*);
+C_DECL_END

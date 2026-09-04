@@ -15,6 +15,7 @@ ALIAS_PATTERN = r"ALIAS\(([^,]+),"
 
 # (Not a catch-all blacklist... needs manual correction *often*)
 blacklist = ["volatile", "callFunc", "sizeof", "printf", "Printf", "func", "args", "size", "file", "buffer", "flags", "alias", "ret", "type"]
+whitelist = ["g_GameSystem",]
 final_matches = []
 
 def sanitize(item):
@@ -53,7 +54,7 @@ def parse_cpp(file_path):
     fullcopys = findall(FULL_COPY_PATTERN, code)
     externs = findall(EXTERN_PATTERN, code)
     aliases = findall(ALIAS_PATTERN, code)
-    for item in set(declarations + calls + fullcopys + externs + aliases):
+    for item in set(declarations + calls + fullcopys + externs + aliases + whitelist):
         sanitize(item)
 
 def parse_asm(file_path):
@@ -71,6 +72,7 @@ def parse_asm(file_path):
 
 def parse_esdbs(esdb_paths, curate = True):
     esdb = {"Segments":[],"Symbols":[]}
+    ext_syms = []
     for path in esdb_paths:
         with open(path, "r") as file:
             temp = load(file, Loader = SafeLoader)
@@ -80,12 +82,20 @@ def parse_esdbs(esdb_paths, curate = True):
             # Sanitize segments
             for segment in temp["Segments"]:
                 if segment["Type"] not in ("EXECUTABLE", "OVERLAY"):
+                    if isinstance(segment["Name"], str) and segment["Name"][-4:] in ("_BSS", "DATA", "OREG"):
+                        for symbol in temp["Symbols"]:
+                            if symbol["Segment"] == segment["ID"]:
+                                ext_syms.append({
+                                    "Name": symbol["Name"],
+                                    "Segment": segment["Name"],
+                                    "Address": symbol["Address"]
+                                })
                     continue
                 seg_name = segment["Name"]
                 try: seg_name = int(seg_name.lstrip("OVL_"))
                 except: pass
                 if segment["Type"] == "OVERLAY" and not isinstance(seg_name, int):
-                    continue # _BSS?
+                    continue # Less relevant now?
                 exists = False
                 for segs in esdb["Segments"]:
                     if segs["Name"] == seg_name:
@@ -122,6 +132,7 @@ def parse_esdbs(esdb_paths, curate = True):
                     raise ValueError("symbol %s has a non-int address" % symbol["Name"])
                 exists = False
                 for syms in esdb["Symbols"]:
+                    break # Since this loop is currently useless
                     if syms["Address"] == symbol["Address"]:
                         if syms["Segment"] == new_seg:
                             #exists = True
@@ -150,6 +161,17 @@ def parse_esdbs(esdb_paths, curate = True):
                 if not found:
                     esdb["Segments"].append(fin_seg)
             esdb["Symbols"] += final["Symbols"]
+
+    # Append extra symbols (_BSS, _DATA, etc.)
+    for sym in ext_syms:
+        for seg in esdb["Segments"]:
+            if sym["Segment"].rstrip("_BSS").lstrip("OVL_") == str(seg["Name"]):
+                esdb["Symbols"].append({
+                    "Name": sym["Name"],
+                    "Segment": seg["ID"],
+                    "Address": sym["Address"]
+                })
+                break
 
     if not curate:
         return esdb

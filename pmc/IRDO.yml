@@ -370,6 +370,9 @@ Symbols:
   - Name: __aeabi_ddiv
     Segment: 0x0
     Address: 0x208E7C4
+  - Name: g_GameSystem
+    Segment: 0x0
+    Address: 0x2141134
   - Name: EventScriptCall_Start
     Segment: 0x1
     Address: 0x21536C5

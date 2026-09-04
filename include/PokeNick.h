@@ -2,6 +2,7 @@
 #include "gfl/core/gfl_heap.h"
 #include "pml/poke_party.h"
 
+STRUCT_DECLARE(PokeNick)
 struct PokeNick {
     HeapID heapID;
     u8 padding[2];
@@ -16,8 +17,8 @@ struct PokeNick {
     // ...
 };
 
-extern "C" {
-    PokeNick* PokeNick_InitInner(HeapID, PartyPkm*, ...);
-    void PokeNick_FreeInner(PokeNick*);
-    u32 PokeNick_UpdateInner(PokeNick*);
-}
+C_DECL_BEGIN
+PokeNick* PokeNick_InitInner(HeapID, PartyPkm*, ...);
+void PokeNick_FreeInner(PokeNick*);
+u32 PokeNick_UpdateInner(PokeNick*);
+C_DECL_END

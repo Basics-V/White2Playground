@@ -10,6 +10,7 @@
 
 typedef Bag_StateFunc CustomItemUseFunc;
 typedef GameEvent* (CustomItemActiveFunc)(Field*, GameSystem*);
+STRUCT_DECLARE(CustomItemUseDef)
 struct CustomItemUseDef {
     u32 ID;
     CustomItemUseFunc* func;

@@ -1,7 +1,7 @@
 .thumb
 #include "MODS.h"
 
-#ifdef NO_SAVE
+#ifdef CUSTOM_FIELDMENU
 @ Don't call cursor select icon animation updates
 FULL_COPY_FieldMenu_CursorSelect_0x30:
     NOP

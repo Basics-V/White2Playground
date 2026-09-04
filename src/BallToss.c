@@ -38,20 +38,19 @@
 #include "system/gamesystem.h"
 #include "field/field_player.h"
 #include "field/field_eventwork.h"
-extern "C" {
-    FieldActor* FindFieldActor(FieldActorSystem*, u16);
-    VecFx32* GetMModelWPosPtr(FieldActor*);
 
-    // Force grab custom NPC pos instead of FieldPlayer pos
-    void THUMB_BRANCH_LINK_s020e_PlayPokeballToss_0x64(FieldPlayer* fieldPlayer, VecFx32* destPos) {
-        GameData* gameData = fieldPlayer->m_Field->m_GameData;
-        EventWorkSave* eventWork = gameData->m_EventWork;
+FieldActor* FindFieldActor(FieldActorSystem*, u16);
+VecFx32* GetMModelWPosPtr(FieldActor*);
 
-        // Fetch our target NPC's ID from our BALLTOSS_NPC_VAR
-        u16 npcID = *EventWork_GetWkPtr(eventWork, BALLTOSS_NPC_VAR); // 255 is the player
+// Force grab custom NPC pos instead of FieldPlayer pos
+void THUMB_BRANCH_LINK_s020e_PlayPokeballToss_0x64(FieldPlayer* fieldPlayer, VecFx32* destPos) {
+    GameData* gameData = fieldPlayer->m_Field->m_GameData;
+    EventWorkSave* eventWork = gameData->m_EventWork;
 
-        FieldActor* npcOrigin = FindFieldActor(gameData->m_ActorSystem, npcID);
-        *destPos = *GetMModelWPosPtr(npcOrigin);
-    }
+    // Fetch our target NPC's ID from our BALLTOSS_NPC_VAR
+    u16 npcID = *EventWork_GetWkPtr(eventWork, BALLTOSS_NPC_VAR); // 255 is the player
+
+    FieldActor* npcOrigin = FindFieldActor(gameData->m_ActorSystem, npcID);
+    *destPos = *GetMModelWPosPtr(npcOrigin);
 }
 #endif

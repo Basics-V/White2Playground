@@ -47,21 +47,23 @@ static const u16 FIRST_ENCOUNTER_VARS[CAP_VAR_MAX] = {
     16785,
 };
 
-inline int getZoneVar(u16 idx) {
+C_DECL_BEGIN
+static inline int getZoneVar(u16 idx) {
     return idx >> 4;
 }
 
-inline int getZoneBit(u16 idx) {
+static inline int getZoneBit(u16 idx) {
     while (idx >= 16) idx -= 16;
     return idx;
 }
 
-inline bool is1stDone() {
-    GameData* gameData = Mi4::GameSys()->m_GameData;
+static inline bool is1stDone() {
+    GameData* gameData = g_GameSystem->m_GameData;
     u16 zoneID = gameData->m_PlayerState.ZoneID;
     return (*EventWork_GetWkPtr(
         gameData->m_EventWork,
         FIRST_ENCOUNTER_VARS[getZoneVar(zoneID)]
     ) & getZoneBit(zoneID)) != 0;
 }
+C_DECL_END
 #endif

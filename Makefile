@@ -97,7 +97,7 @@ $(build_dir)/%.elf: $(objs) $(build_data)
 # Prerequisites 
 # -------------------------------------------------------------------
 # All code compilation/assembly rules
-$(build_dir)/code/%_s.o: %.s
+$(build_dir)/code/%_s.o: %.s $(headers)
 	@ echo "[+] Assembling $<..."
 	@ mkdir -p $(@D)
 	@ $(gcc) $(as_flags) -c $< -o $@

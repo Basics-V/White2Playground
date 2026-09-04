@@ -3,6 +3,7 @@
 #include "system/game_data.h"
 #include "gfl/str/string.h"
 
+ENUM_DECLARE_EX(BagActionID, u32)
 enum BagActionID: u32 {   // Extended use denoted w/ in-line comments
     BAG_CLOSE      = 0x0, // 0x1
     BAG_GIVE       = 0x2, // 0x3, 0x4, 0x9
@@ -27,6 +28,7 @@ enum BagActionID: u32 {   // Extended use denoted w/ in-line comments
     #endif
 };
 
+STRUCT_DECLARE(Bag)
 struct Bag { // See Paideieitor/PW2Code/Headers/bag.h
     GameData* gameData;
 
@@ -51,15 +53,15 @@ struct Bag { // See Paideieitor/PW2Code/Headers/bag.h
 
 typedef void (Bag_StateFunc)(Bag*);
 
-extern "C" {
-    b32 Bag_IsItemRepel(int);
-    Bag_StateFunc Bag_WaitDialogue;
-    void Bag_UpdateStateMachine(Bag*, Bag_StateFunc);
-    void Bag_SetItemWindowState(Bag*);
-    int PML_ItemGetParam(void*, u32);
-    void Bag_LoadItemName(Bag*, int, u32);
-    void Bag_CreateTextBox(Bag*, int);
-    void Bag_DrawWindow(Bag*);
-    void Bag_SetMenuBrightness(Bag*, b32);
-    void Bag_SubItem(Bag*, u16);
-}
+C_DECL_BEGIN
+b32 Bag_IsItemRepel(int);
+Bag_StateFunc Bag_WaitDialogue;
+void Bag_UpdateStateMachine(Bag*, Bag_StateFunc);
+void Bag_SetItemWindowState(Bag*);
+int PML_ItemGetParam(void*, u32);
+void Bag_LoadItemName(Bag*, int, u32);
+void Bag_CreateTextBox(Bag*, int);
+void Bag_DrawWindow(Bag*);
+void Bag_SetMenuBrightness(Bag*, b32);
+void Bag_SubItem(Bag*, u16);
+C_DECL_END

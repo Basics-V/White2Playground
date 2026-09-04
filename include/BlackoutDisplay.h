@@ -6,14 +6,15 @@
 #define BLACKOUT_DISPLAY_OVL_ID 0x127
 static GameProcFunctions* BLACKOUT_DISPLAY_PROC_LIST;
 
+STRUCT_DECLARE(BlackoutInitProcData)
 struct BlackoutInitProcData {
     GameSystem* gameSys;
     b32 respawnPokeCen;
     TrainerCard* trainerCard;
 };
 
-extern "C" {
-    b32 BlackoutDisplayProc_Init(GameProc*, u32*, void*, void*);
-    b32 BlackoutDisplayProc_Update(GameProc*, u32*, void*, void*);
-    b32 BlackoutDisplayProc_End(GameProc*, u32*, void*, void*);
-}
+C_DECL_BEGIN
+b32 BlackoutDisplayProc_Init(GameProc*, u32*, void*, void*);
+b32 BlackoutDisplayProc_Update(GameProc*, u32*, void*, void*);
+b32 BlackoutDisplayProc_End(GameProc*, u32*, void*, void*);
+C_DECL_END

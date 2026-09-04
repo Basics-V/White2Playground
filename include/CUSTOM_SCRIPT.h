@@ -3,6 +3,7 @@
 #include "MODS.h"
 
 #ifdef CUSTOM_SCRIPT
+STRUCT_DECLARE(CustomScriptEntry)
 struct CustomScriptEntry {
     ScriptGlobalTableEntry global;
     const char* name;
