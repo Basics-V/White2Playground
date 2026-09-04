@@ -35,7 +35,7 @@ SCRIPT_LIB   := ctrmap/resources/scripting/cm_ide/sdk/EV_GEN_V/SDK5-B2W2-Generat
 PKS_INCLUDE  := $(build_dir)/.temp.lib
 
 # Final
-data: $(build_fs) $(W2Playground) $(build_fs)/$(TEXT_SYSTEM_ARC) $(build_fs)/$(TEXT_EVENTS_ARC) $(SCRIPT_FILES)
+data: $(build_fs)/a $(W2Playground) $(build_fs)/$(TEXT_SYSTEM_ARC) $(build_fs)/$(TEXT_EVENTS_ARC) $(SCRIPT_FILES)
 
 # -------------------------------------------------------------------
 # Rules
@@ -50,10 +50,10 @@ $(W2Playground): $(ROOT_FILES)
 	  done
 
 # All unstructured NARCs
-$(build_fs): $(data_dir)/a
+$(build_fs)/a: $(data_dir)/a
 	@ echo "[+] Storing all unstructured NARCs..."
 	@ mkdir -p $@
-	@ cp -R $< $@
+	@ cp -a $</. $@
 
 # Text System ARC
 ## Builds the ARC.
