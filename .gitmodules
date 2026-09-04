@@ -1,6 +1,7 @@
 [submodule "include/swan"]
 	path = include/swan
-	url = https://github.com/ds-pokemon-hacking/swan
+	url = https://github.com/MCMi460/swan
+	branch = c-fix
 [submodule "tools/pyidbutil"]
 	path = tools/pyidbutil
 	url = https://github.com/nlitsme/pyidbutil
