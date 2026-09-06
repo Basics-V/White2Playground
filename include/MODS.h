@@ -74,6 +74,9 @@
 
 #ifdef FIRST_ENCOUNTER
     #define ZONE_MAX    615
-    #define CAP_VAR_MAX (ZONE_MAX >> 4) + 1
     #define ENC1_TXTDAT 738
+#endif
+
+#ifdef PARAFLINCH
+    #define PARAFLINCH_PERCENT 75
 #endif

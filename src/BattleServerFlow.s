@@ -13,3 +13,9 @@ FULL_COPY_ServerCommand_TrainerBlockBall_0x4a:
     MOV R0,R5
     .size FULL_COPY_ServerCommand_TrainerBlockBall_0x4a, . - FULL_COPY_ServerCommand_TrainerBlockBall_0x4a
 #endif
+
+#ifdef PARAFLINCH
+FULL_COPY_ServerControl_MoveExecuteCheck1_0x19c:
+    MOV R0,#PARAFLINCH_PERCENT
+    .size FULL_COPY_ServerControl_MoveExecuteCheck1_0x19c, . - FULL_COPY_ServerControl_MoveExecuteCheck1_0x19c
+#endif

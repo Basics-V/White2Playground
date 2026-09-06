@@ -3,6 +3,7 @@
 #include "Util.h"
 
 #ifdef FIRST_ENCOUNTER
+#define CAP_VAR_MAX (ZONE_MAX >> 4) + 1
 #include "system/game_data.h"
 #include "field/field_eventwork.h"
 static const u16 FIRST_ENCOUNTER_VARS[CAP_VAR_MAX] = {

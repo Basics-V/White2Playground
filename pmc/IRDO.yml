@@ -580,6 +580,9 @@ Symbols:
   - Name: MainModule_GetBattleType
     Segment: 0x7
     Address: 0x219BF15
+  - Name: ServerControl_MoveExecuteCheck1
+    Segment: 0x7
+    Address: 0x21A3B01
   - Name: ServerControl_ThrowBallRoot
     Segment: 0x7
     Address: 0x21AF5FD
